@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>uRank Test</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+
+        <!-- bower:css -->
+        <link rel="stylesheet" href="../bower_components/jquery-ui/themes/base/jquery-ui.min.css" />
+        <link rel="stylesheet" href="../bower_components/hint.css/hint.min.css" />
+        <link rel="stylesheet" href="../bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css" />
+        <link rel="stylesheet" href="../bower_components/urank/css/urank.css" />
+        <link rel="stylesheet" href="../bower_components/urank/css/urank-blocks-default.css" />
+        <link rel="stylesheet" href="../bower_components/urank/css/vis-ranking.css" />
+        <!-- endbower -->
+
+        <!-- injector:css -->
+        <!-- endinjector -->
+
+        <link rel="stylesheet" type="text/css" href="css/main-style.css" />
+    </head>
+
+    <body>
+        <header>                            <!-- top panel -->
+            <select id="select-dataset"></select>
+            <select id="select-download">
+                <option value="2files">Keyword &amp; ranking in 2 files</option>
+                <option value="1file">All in 1 file</option>
+            </select>
+            <input type="button" id="btn-download" value="Download"/>
+      	</header>
+
+        <div class="main-panel">
+
+            <div id="tagcloud"></div>       <!-- left panel -->
+
+            <div class="central-panel">     <!-- central panel, including list and ranking -->
+
+                <div class="control-panel">
+                    <div class="ranking-controls">
+                        <button id="btn-reset" title="Reset">
+                            <span class="sprite-reset"></span>
+                        </button>
+                        <button id="btn-sort-by-overall-score" title="Sort by overall score">
+                            <span class="sprite-sort-down"></span>
+                        </button>
+                        <button id="btn-sort-by-max-score" title="Sort by maximum score">
+                            <span class="sprite-wiggle"></span>
+                        </button>
+                    </div>
+
+                    <div id="tagbox"></div>
+
+                </div>
+
+                <div class="vis-panel">
+                    <div id="contentlist" ></div>
+                    <div id="viscanvas"></div>
+                </div>
+            </div>
+            <div id="docviewer"></div>      <!-- right panel -->
+
+		</div>
+
+        <div class="processing-message">Processing Data...</div>
+	
+	<!-- bower:js -->
+	<script src="../bower_components/jquery/dist/jquery.js"></script>
+	<script src="../bower_components/colorbrewer/colorbrewer.js"></script>
+	<script src="../bower_components/d3/d3.js"></script>
+	<script src="../bower_components/d3pie/d3pie/d3pie.min.js"></script>
+	<script src="../bower_components/underscore/underscore.js"></script>
+	<script src="../bower_components/jquery-ui/jquery-ui.min.js"></script>
+	<script src="../bower_components/jquery-mousewheel/jquery.mousewheel.js"></script>
+	<script src="../bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.js"></script>
+	<script src="../bower_components/velocity/velocity.js"></script>
+	<script src="../bower_components/velocity/velocity.ui.js"></script>
+	<script src="../bower_components/urank/libs/natural-custom.js"></script>
+	<script src="../bower_components/urank/libs/pos/lexer.js"></script>
+	<script src="../bower_components/urank/libs/pos/lexicon.js"></script>
+	<script src="../bower_components/urank/libs/pos/pos.js"></script>
+	<script src="../bower_components/urank/libs/pos/POSTagger.js"></script>
+	<script src="../bower_components/urank/model/keywordExtractor.js"></script>
+	<script src="../bower_components/urank/model/rankingArray.js"></script>
+	<script src="../bower_components/urank/model/rankingModel.js"></script>
+	<script src="../bower_components/urank/blocks/contentList.js"></script>
+	<script src="../bower_components/urank/blocks/docViewer.js"></script>
+	<script src="../bower_components/urank/blocks/tagBox.js"></script>
+	<script src="../bower_components/urank/blocks/tagCloud.js"></script>
+	<script src="../bower_components/urank/blocks/visCanvas.js"></script>
+	<script src="../bower_components/urank/modules/tagcloud/tagCloudDefault.js"></script>
+	<script src="../bower_components/urank/modules/viscanvas/ranking.js"></script>
+	<script src="../bower_components/urank/helper/globals.js"></script>
+	<script src="../bower_components/urank/helper/settings.js"></script>
+	<script src="../bower_components/urank/helper/utils.js"></script>
+	<script src="../bower_components/urank/helper/jquery_functions/outerHTML.js"></script>
+	<script src="../bower_components/urank/helper/jquery_functions/scrollTo.js"></script>
+	<script src="../bower_components/urank/helper/jquery_functions/fullOffset.js"></script>
+	<script src="../bower_components/urank/helper/jquery_functions/fullWidth.js"></script>
+	<script src="../bower_components/urank/helper/jquery_functions/fullHeight.js"></script>
+	<script src="../bower_components/urank/helper/jquery_functions/getText.js"></script>
+	<script src="../bower_components/urank/helper/jquery_functions/pin.js"></script>
+	<script src="../bower_components/urank/urank.js"></script>
+	<!-- endbower -->
+
+        <!-- injector:js -->
+        <!-- endinjector -->
+
+        <!-- App scripts -->
+        <script type="text/javascript" src="js/dataset-manager.js" charset="utf-8" ></script>
+        <script type="text/javascript" src="js/file-generator.js" charset="utf-8"></script>
+        <script type="text/javascript" src="js/main.js" charset="utf-8"></script>
+	
+	
+    </body>
+</html>
