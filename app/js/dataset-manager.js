@@ -4,6 +4,21 @@ function datasetManager(){
 
     var datasetMappings = {
         DS_Co: {
+            description: 'Connections 22',
+            file: 'dataset_Cx.json'
+        },
+        DS_Ro: {
+            description: 'Connections 87',
+            file: 'dataset_Cx87.json'
+        },
+        DS_AR: {
+            description: 'Connections 45',
+            file: 'dataset_Cx45.json'
+        }
+    };
+
+    /*var datasetMappings = {
+        DS_Co: {
             description: 'Connections',
             file: 'dataset_Cx.json'
         },
@@ -27,7 +42,7 @@ function datasetManager(){
             description: 'Connections',
             file: 'dataset_Cx.json'
         }
-    };
+    };*/
 
     this.getIDsAndDescriptions = function(){
         var idsAndDescriptions = [];

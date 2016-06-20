@@ -29,7 +29,8 @@
                 <option value="1file">All in 1 file</option>
             </select>
             <input type="button" id="btn-download" value="Download"/>
-      	</header>
+            <input type="button" id="btn-save-labeled" value="Save Labeling"/>
+        </header>
 
         <div class="main-panel">
             <div class="tagCloud-control-panel">
@@ -58,6 +59,10 @@
                         <button id="btn-sort-by-max-score" title="Sort by maximum score">
                             <span class="sprite-wiggle"></span>
                         </button>
+                        <button id="btn-find-not-labeled" title="Sort by maximum score">
+                            <span class="btn-reset"></span>
+                        </button>
+                        <input type="checkbox" id="chek-find-not-labeled">Show nonlabeling
                     </div>
 
                     <div id="tagbox"></div>

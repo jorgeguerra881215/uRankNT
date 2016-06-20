@@ -42,6 +42,20 @@
      * Created by Jorch
      * @type {Function}
      */
+    var btnSaveLabeledClicked = function(event) {
+
+        var scriptURL = '../server/download.php',
+            date = new Date(),
+            timestamp = date.getFullYear() + '-' + (parseInt(date.getMonth()) + 1) + '-' + date.getDate() + '_' + date.getHours() + '.' + date.getMinutes() + '.' + date.getSeconds(),
+            urankState = _this.urank.getCurrentState(),
+            gf = [{ filename: 'urank_labeled_' + timestamp + '.txt', content: urankState }];//JSON.stringify(urankState)
+
+        gf.forEach(function(f){
+            $.generateFile({ filename: f.filename, content: f.content, script: scriptURL });
+        });
+
+        event.preventDefault();
+    };
      var changeUploadConnectionNumber = function(value){
         alert('hola')
 
@@ -69,12 +83,25 @@
     $("#select-dataset").html(datasetOptions).change(selectDatasetChanged);
 
     // Bind event handlers for "download ranking" button
-    $('#btn-download').click(btnDownloadClicked);
+    //$('#btn-download').click(btnSaveLabeledClicked);
+    $('#btn-save-labeled').click(btnSaveLabeledClicked);
 
     // Bind event handlers for urank specific buttons
     $('#btn-reset').off().on('click', this.urank.reset);
     $('#btn-sort-by-overall-score').off().on('click', this.urank.rankByOverallScore);
     $('#btn-sort-by-max-score').off().on('click', this.urank.rankByMaximumScore);
+    $('#btn-find-not-labeled').off().on('click', this.urank.findNotLabeled);
+    $('#chek-find-not-labeled').off().on('click', this.urank.findNotLabeled);
+    /*$('#chek-find-not-labeled').off().on('click', function(){
+        if($(this).is(':checked'))
+        {
+            _this.urank.findNotLabeled
+        }
+        else{
+            alert('not checked');
+        }
+    });*/
+
 
     // Trigger change evt to load first dataset in select options
     $('#select-dataset').trigger('change');
@@ -140,6 +167,13 @@
         }
 
     });
+
+
+    window.onbeforeunload = function(){
+        return "Are you sure you wanna leave my site?";
+    }
+
+
 
 })();
 
