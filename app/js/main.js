@@ -90,8 +90,16 @@
     $('#btn-reset').off().on('click', this.urank.reset);
     $('#btn-sort-by-overall-score').off().on('click', this.urank.rankByOverallScore);
     $('#btn-sort-by-max-score').off().on('click', this.urank.rankByMaximumScore);
-    $('#btn-find-not-labeled').off().on('click', this.urank.findNotLabeled);
-    $('#chek-find-not-labeled').off().on('click', this.urank.findNotLabeled);
+
+    //$( "input[type='radio']" ).checkbox();
+
+    $('input[type=radio][name=connection-label]').change(function() {
+        _this.urank.findNotLabeled(this.value);
+    });
+
+    /*$('#btn-find-not-labeled').off().on('click', this.urank.findNotLabeled);
+    $('#chek-find-botnet').off().on('click', this.urank.findBotnet);
+    $('#chek-find-normal').off().on('click', this.urank.findNormal);*/
     /*$('#chek-find-not-labeled').off().on('click', function(){
         if($(this).is(':checked'))
         {
