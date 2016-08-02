@@ -91,25 +91,11 @@
     $('#btn-sort-by-overall-score').off().on('click', this.urank.rankByOverallScore);
     $('#btn-sort-by-max-score').off().on('click', this.urank.rankByMaximumScore);
 
-    //$( "input[type='radio']" ).checkbox();
 
+    //Filter by label
     $('input[type=radio][name=connection-label]').change(function() {
         _this.urank.findNotLabeled(this.value);
     });
-
-    /*$('#btn-find-not-labeled').off().on('click', this.urank.findNotLabeled);
-    $('#chek-find-botnet').off().on('click', this.urank.findBotnet);
-    $('#chek-find-normal').off().on('click', this.urank.findNormal);*/
-    /*$('#chek-find-not-labeled').off().on('click', function(){
-        if($(this).is(':checked'))
-        {
-            _this.urank.findNotLabeled
-        }
-        else{
-            alert('not checked');
-        }
-    });*/
-
 
     // Trigger change evt to load first dataset in select options
     $('#select-dataset').trigger('change');
