@@ -168,11 +168,26 @@ header select, header input[type="button"]{
 
 #tagcloud {
     float: left;
-    width: 17%;
+    /*width: 17%;*/
     height: calc(100% - 25px);
 }
 
+#tagcloud-container{
+    float: left;
+    width: 17%;
+}
 
+#tagCloud-controlPanel{
+    height: 80px;
+}
+
+#tagCloud-slideControl{
+    padding: 18px;
+}
+
+.slidevalue{
+    background: #F0F0F0;
+}
 
 .central-panel {
     display: inline-block;
@@ -200,9 +215,13 @@ header select, header input[type="button"]{
 	/*display: inline-flex;*/
     justify-content: center;
     align-items: center;
-    width: 45%;
+    /*width: 45%;*/
     background: -webkit-linear-gradient(top, rgba(245, 245, 245, 1), rgba(230, 230, 230, 1));
     box-shadow: inset .1em .1em .5em #ccc, inset -.1em -.1em .5em #ccc;
+}
+
+.middle-panel{
+    width: 45%;
 }
 
 .ranking-controls input[type='radio']{
@@ -441,7 +460,7 @@ div[periodicity='5']{
 
 }
 div.urank-tagcloud-tag{
-    padding: 12px;
+    padding: 5px;
 }
 
 .opacity-li{

@@ -124,7 +124,7 @@
         },
         stop: function(event,ui){
 
-            _this.urank.updateTagsCloud(ui.value,$( "#patternValue" ).val())
+            _this.urank.updateTagsCloud(ui.value,$( "#patternValue" ).val(),$( "#lengthValue" ).val())
         },
         change: function( event, ui ) {
             /*$( "#changevalue" )
@@ -150,7 +150,34 @@
              .val( "$" + ui.value[ 0 ] + " - $" + ui.values[ 1 ] );*/
         },
         stop: function(event,ui){
-            _this.urank.updateTagsCloud($( "#stfValue" ).val(),ui.value)
+            _this.urank.updateTagsCloud($( "#stfValue" ).val(),ui.value,$( "#lengthValue" ).val())
+        },
+        change: function( event, ui ) {
+            /*$( "#changevalue" )
+             .val( "$" + ui.value );*/
+        },
+        formatter: function(value) {
+            return 'Current value: ' + value;
+        }
+
+    });
+
+    $( "#slider-length" ).slider({
+        //range:true,
+        min: 5,
+        max: 15,
+        step: 5,
+        values: 5,
+        slide: function( event, ui ) {
+            $( "#lengthValue" )
+                .val(ui.value);
+        },
+        start: function( event, ui ) {
+            /*$( "#startvalue" )
+             .val( "$" + ui.value[ 0 ] + " - $" + ui.values[ 1 ] );*/
+        },
+        stop: function(event,ui){
+            _this.urank.updateTagsCloud($( "#stfValue" ).val(),$( "#patternValue" ).val(),ui.value)
         },
         change: function( event, ui ) {
             /*$( "#changevalue" )
