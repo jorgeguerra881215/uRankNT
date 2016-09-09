@@ -183,6 +183,7 @@ header select, header input[type="button"]{
 
 #tagCloud-slideControl{
     padding: 18px;
+    padding-bottom: 4px;
 }
 
 .slidevalue{
@@ -242,6 +243,8 @@ header select, header input[type="button"]{
     padding: .3em .6em;
     border-radius: .9em;
 }
+
+
 
 
 .ranking-controls button span {

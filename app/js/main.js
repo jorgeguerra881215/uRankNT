@@ -188,7 +188,14 @@
         }
 
     });
-
+    $('#btn-sort-by-periodicity').click(function(){
+        $(this).css('border-color','black');
+        _this.urank.updateTagsCloud($( "#stfValue" ).val(),$( "#patternValue" ).val(),$( "#lengthValue" ).val(),true);
+    });
+    $('#btn-tagCloud-reset').click(function(){
+        $('#btn-sort-by-periodicity').css('border-color','transparent');
+        _this.urank.updateTagsCloud($( "#stfValue" ).val(),$( "#patternValue" ).val(),$( "#lengthValue" ).val(),false);
+    });
 
     window.onbeforeunload = function(){
         return "Are you sure you wanna leave my site?";
