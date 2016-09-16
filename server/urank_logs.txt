@@ -1,0 +1,206 @@
+2016-8-27_16.2.37- new line
+2016-8-27_16.2.42- new line
+2016-8-27_16.2.53- new line
+2016-8-27_16.52.26 Label - Botnet
+2016-8-28_13.24.22 Filternonlabel null null null null null null null 
+2016-8-28_13.27.36 Filternull botnet null null null null null null 
+2016-8-28_14.0.11 Filternull null null all null null null null 
+2016-8-28_14.0.12 Connection - 294
+2016-8-28_14.0.17 Filternull null null all 147.32.84.134 null null null 
+2016-8-28_14.0.21 Connection - 435
+2016-8-28_14.0.23 Connection - 443
+2016-8-29_11.13.8 Ranking 
+2016-8-29_11.13.25 Ranking 
+2016-8-29_11.13.33 Ranking 
+2016-8-29_11.29.29 Ranking [object Object] 
+2016-8-29_11.30.40 Ranking [object Object],[object Object] 
+2016-8-29_11.37.11 Ranking .z.z. 
+2016-8-29_11.37.24 Ranking .z.z. W.W.W 
+2016-8-29_11.37.27 Ranking .z.z. W.W.W Z.I.Z 
+2016-8-29_11.37.35 Ranking .z.z. Z.I.Z 
+2016-8-29_11.59.35 Ranking .W+W. 
+2016-8-29_11.59.37 Ranking .W+W. W*W.W 
+2016-8-29_11.59.50 Reset Ranking
+2016-9-5_10.52.46 Connection - 145
+2016-9-5_11.26.43 Ranking ,s,s,s,s,s,s,s, 
+2016-9-5_11.26.55 Connection - 6127
+2016-9-5_11.27.26 Ranking ,s,s,s,s,s,s,s, s+s+s 
+2016-9-5_11.27.34 Connection - 4152
+2016-9-5_11.28.8 Ranking ,s,s,s,s,s,s,s, 
+2016-9-5_11.28.16 Ranking 
+2016-9-5_11.28.23 Ranking 
+2016-9-5_11.28.27 Ranking 
+2016-9-5_11.28.33 Ranking 
+2016-9-5_11.28.47 Ranking .S,s, 
+2016-9-5_11.28.53 Ranking 
+2016-9-5_11.28.58 Ranking 
+2016-9-5_11.29.4 Ranking 
+2016-9-5_11.29.30 Ranking 
+2016-9-5_11.32.11 Ranking r,r,r,r,r, 
+2016-9-5_11.32.23 Ranking 
+2016-9-5_11.32.31 Ranking r,r,A,r,r, 
+2016-9-5_11.32.37 Connection - 2508
+2016-9-5_11.32.58 Ranking 
+2016-9-5_11.36.22 Ranking ,A,r,r,r,r 
+2016-9-5_11.36.35 Ranking ,A,r,r,r,r ,s,s,s,s,B 
+2016-9-5_11.40.19 Ranking ,A,r,r,r,r 
+2016-9-5_11.47.0 Ranking r,r,r 
+2016-9-5_11.47.56 Ranking 
+2016-9-5_11.49.54 Ranking s,s,s 
+2016-9-5_11.50.7 Ranking 
+2016-9-5_11.57.34 Ranking r,r,r,r,r, 
+2016-9-5_11.57.41 Ranking 
+2016-9-5_11.58.9 Ranking A,r,r,r,r, 
+2016-9-5_11.58.27 Ranking 
+2016-9-5_11.59.38 Ranking 
+2016-9-5_12.0.29 Ranking 
+2016-9-5_12.6.40 Ranking r,r,r 
+2016-9-5_12.6.53 Ranking 
+2016-9-5_12.9.35 Ranking r,r,r 
+2016-9-5_12.9.56 Ranking 
+2016-9-5_14.32.43 Ranking ,r,r, 
+2016-9-5_14.32.52 Ranking 
+2016-9-5_14.34.57 Ranking r,r,r,r,r, 
+2016-9-5_14.35.6 Ranking 
+2016-9-5_14.35.50 Ranking ,r,r,r,r,r 
+2016-9-5_14.37.57 Ranking 
+2016-9-5_14.41.0 Ranking ,r,r, 
+2016-9-5_14.41.9 Ranking 
+2016-9-5_14.46.34 Ranking r,r,r,r,r, 
+2016-9-5_14.46.45 Ranking 
+2016-9-5_14.50.27 Ranking ,r,r, 
+2016-9-5_14.50.34 Ranking 
+2016-9-5_14.51.40 Ranking r,r,r,r,r, 
+2016-9-5_14.52.2 Ranking 
+2016-9-5_15.24.3 Ranking ,r,r, 
+2016-9-5_15.24.52 Ranking ,r,r, ,s,s, 
+2016-9-5_15.36.25 Ranking ,r,r, 
+2016-9-5_15.37.13 Ranking ,r,r, ,s,s,s,s,s 
+2016-9-5_15.51.2 Ranking ,r,r, 
+2016-9-5_15.51.11 Ranking ,r,r, r,r,r 
+2016-9-5_15.51.17 Ranking ,r,r, r,r,r ,A,r, 
+2016-9-5_15.53.42 Ranking r,r,r ,A,r, 
+2016-9-5_16.9.25 Ranking ,r,r, 
+2016-9-5_16.9.33 Ranking ,r,r, r,r,r 
+2016-9-5_16.9.38 Ranking ,r,r, r,r,r ,A,r, 
+2016-9-5_16.10.1 Ranking ,r,r, r,r,r ,A,r, r,r,r,r,r, 
+2016-9-5_16.10.13 Ranking r,r,r ,A,r, r,r,r,r,r, 
+2016-9-5_16.10.23 Ranking ,A,r, r,r,r,r,r, 
+2016-9-5_16.10.32 Ranking r,r,r,r,r, 
+2016-9-5_16.10.38 Ranking 
+2016-9-5_16.18.15 Ranking r,r,r,r,r, 
+2016-9-5_16.18.34 Ranking r,r,r,r,r, ,r,r,r,r,r 
+2016-9-5_16.18.41 Ranking r,r,r,r,r, ,r,r,r,r,r s,s,s,s,s, 
+2016-9-5_16.29.46 Ranking ,r,r,r,r,r 
+2016-9-5_16.30.5 Ranking ,r,r,r,r,r r,r,r,r,r, 
+2016-9-5_16.30.19 Ranking ,r,r,r,r,r r,r,r,r,r, r,r,A 
+2016-9-5_16.30.45 Ranking ,r,r,r,r,r r,r,r,r,r, r,r,A r,r,A,r,r, 
+2016-9-5_16.31.16 Ranking ,r,r,r,r,r r,r,r,r,r, r,r,A 
+2016-9-5_16.31.21 Ranking ,r,r,r,r,r r,r,r,r,r, 
+2016-9-5_16.31.25 Ranking ,r,r,r,r,r 
+2016-9-5_16.31.33 Ranking 
+2016-9-5_16.31.49 Ranking ,r,r, 
+2016-9-5_16.31.56 Ranking ,r,r, ,A,r, 
+2016-9-5_16.32.2 Ranking ,r,r, ,A,r, ,s,s, 
+2016-9-5_16.32.15 Ranking ,r,r, ,A,r, ,s,s, A,r,r 
+2016-9-5_16.33.58 Ranking ,r,r, 
+2016-9-5_16.34.19 Ranking 
+2016-9-5_16.34.29 Ranking ,s,s,s,s,s,s,s, 
+2016-9-5_16.34.39 Ranking ,s,s,s,s,s,s,s, s,s,s,s,s,s,s,s 
+2016-9-5_16.36.6 Ranking s,s,s,s,s,s,s,s 
+2016-9-5_16.36.9 Ranking 
+2016-9-5_16.49.22 Ranking r,r,r,r,r, 
+2016-9-5_16.50.23 Connection - 2348
+2016-9-5_16.57.33 Ranking r,r,r,r,r, ,r,r,r,r,r 
+2016-9-5_17.0.38 Ranking r,r,r,r,r, ,r,r,r,r,r ,r,r, 
+2016-9-5_17.1.8 Connection - 2198
+2016-9-5_17.1.9 Connection - 2821
+2016-9-5_17.1.10 Connection - 2805
+2016-9-5_17.7.11 Ranking r,r,r,r,r, 
+2016-9-5_17.7.19 Ranking 
+2016-9-5_17.7.30 Ranking ,r,r, 
+2016-9-5_17.7.39 Ranking ,r,r, ,A,r, 
+2016-9-5_17.7.47 Ranking ,A,r, 
+2016-9-5_17.7.53 Ranking 
+2016-9-5_17.21.15 Ranking ,r,r, 
+2016-9-5_17.23.35 Ranking ,r,r, r,r,r,r,r, 
+2016-9-5_17.23.52 Ranking ,r,r, r,r,r,r,r, ,r,r,r,r,r 
+2016-9-5_17.30.37 Ranking ,r,r, r,r,r,r,r, ,r,r,r,r,r A,r,r,r,r, 
+2016-9-5_17.37.27 Ranking ,r,r, r,r,r,r,r, ,r,r,r,r,r A,r,r,r,r, ,A,r,r,r,r 
+2016-9-5_17.44.14 Ranking r,r,r,r,r, 
+2016-9-5_17.44.44 Ranking r,r,r,r,r, ,r,r,r,r,r 
+2016-9-5_17.45.34 Ranking r,r,r,r,r, ,r,r,r,r,r A,r,r,r,r, 
+2016-9-5_17.47.28 Ranking Reset
+2016-9-5_17.47.36 Ranking ,r,r, 
+2016-9-5_17.48.6 Ranking ,r,r, r,r,r 
+2016-9-5_17.51.1 Ranking ,r,r, r,r,r r,r,r,r,r, 
+2016-9-5_17.51.12 Ranking ,r,r, r,r,r 
+2016-9-5_17.51.24 Ranking ,r,r, r,r,r r,r,r,r,r, 
+2016-9-5_22.51.6 Ranking r,r,r,r,r, 
+2016-9-5_23.3.37 Ranking r,r,r,r,r, 
+2016-9-5_23.3.54 Ranking 
+2016-9-5_23.9.47 Ranking r,r,r,r,r, 
+2016-9-5_23.19.47 Ranking r,r,r,r,r, ,r,r,r,r,r 
+2016-9-5_23.22.47 Ranking ,r,r,r,r,r 
+2016-9-5_23.22.52 Ranking 
+2016-9-5_23.23.10 Ranking r,r,r,r,r, 
+2016-9-5_23.59.20 Ranking r,r,r,r,r, ,r,r,r,r,r 
+2016-9-6_0.8.56 Ranking r,r,r,r,r, ,r,r,r,r,r A,r,r,r,r, 
+2016-9-6_0.13.12 Ranking r,r,r,r,r, 
+2016-9-6_0.13.38 Ranking r,r,r,r,r, ,r,r,r,r,r 
+2016-9-6_0.13.47 Ranking ,r,r,r,r,r 
+2016-9-6_0.13.51 Ranking 
+2016-9-6_0.14.9 Ranking ,r,r, 
+2016-9-6_0.14.21 Ranking ,r,r, ,r,r. 
+2016-9-6_0.35.38 Ranking ,r,r, 
+2016-9-6_0.35.47 Ranking 
+2016-9-6_11.58.9 Ranking ,s,s,s,s,s,s,s, 
+2016-9-6_11.58.23 Ranking ,s,s,s,s,s,s,s, ,s,s,s,s,s,s,B, 
+2016-9-6_11.58.29 Connection - 4394
+2016-9-6_11.58.33 Connection - 6127
+2016-9-6_11.58.54 Ranking ,s,s,s,s,s,s,s, ,s,s,s,s,s,s,B, +s+s, 
+2016-9-6_11.59.6 Ranking ,s,s,s,s,s,s,B, +s+s, 
+2016-9-6_11.59.13 Ranking +s+s, 
+2016-9-6_11.59.20 Ranking 
+2016-9-6_11.59.27 Ranking Reset
+2016-9-7_1.7.42 Ranking r,r,r,r,A, 
+2016-9-7_1.7.58 Ranking r,r,r,r,A, ,r,r,r,A,r 
+2016-9-7_1.8.12 Ranking r,r,r,r,A, ,r,r,r,A,r R.r.R.R.r. 
+2016-9-7_1.8.25 Connection - 2822
+2016-9-7_1.8.30 Connection - 1897
+2016-9-7_1.9.26 Ranking r,r,r,r,A, ,r,r,r,A,r R.r.R.R.r. .R.R.R.R.r.r.r. 
+2016-9-7_1.9.33 Ranking r,r,r,r,A, ,r,r,r,A,r R.r.R.R.r. 
+2016-9-7_1.9.40 Ranking r,r,r,r,A, ,r,r,r,A,r R.r.R.R.r. r,r,r,r,r,r,A,r 
+2016-9-7_1.9.51 Ranking r,r,r,r,A, ,r,r,r,A,r R.r.R.R.r. r,r,r,r,r,r,A,r A,r,r,r,r,r,r,r 
+2016-9-7_1.10.26 Ranking r,r,r,r,A, ,r,r,r,A,r R.r.R.R.r. r,r,r,r,r,r,A,r A,r,r,r,r,r,r,r ,a,r, 
+2016-9-7_1.10.38 Ranking r,r,r,r,A, ,r,r,r,A,r R.r.R.R.r. r,r,r,r,r,r,A,r A,r,r,r,r,r,r,r ,a,r, ,A,A, 
+2016-9-7_1.11.5 Connection - 1897
+2016-9-7_1.11.9 Connection - 2658
+2016-9-7_1.11.12 Connection - 1846
+2016-9-7_1.11.17 Connection - 2658
+2016-9-7_11.39.56 Connection - 294
+2016-9-7_11.48.56 Connection - 294
+2016-9-7_12.18.47 Ranking Z.Z.z 
+2016-9-7_12.18.58 Ranking Z.Z.z 99.Z. 
+2016-9-7_12.19.7 Ranking Reset
+2016-9-7_12.24.24 Connection - 294
+2016-9-7_12.33.13 Ranking Z.z.Z 
+2016-9-7_12.33.25 Ranking 
+2016-9-7_14.38.17 Ranking .Z.Z. 
+2016-9-7_14.38.27 Ranking 
+2016-9-7_15.43.13 Ranking .z.Z, 
+2016-9-7_15.43.16 Ranking .z.Z, .I.z. 
+2016-9-7_15.43.30 Ranking .I.z. 
+2016-9-7_15.43.33 Ranking 
+2016-9-7_15.43.36 Connection - 294
+2016-9-7_15.43.37 Connection - 435
+2016-9-7_15.43.39 Connection - 294
+2016-9-7_15.44.4 Ranking Z.z.Z 
+2016-9-7_15.44.18 Ranking Z.z.Z Z.z.W 
+2016-9-7_15.44.31 Ranking Z.z.Z 
+2016-9-7_15.44.34 Ranking Z.z.Z I.Z.Z 
+2016-9-7_15.44.49 Ranking I.Z.Z 
+2016-9-7_15.44.51 Ranking 
+2016-9-7_16.2.39 Connection - 294
+2016-9-8_23.17.9 Ranking .I.Z. 
+2016-9-8_23.17.11 Ranking 
