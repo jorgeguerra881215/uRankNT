@@ -1,4 +1,3 @@
 <?php
-$txt = $_POST['content'];
-$myfile = file_put_contents('urank_logs.txt', $txt.PHP_EOL , FILE_APPEND);
-?>
+$output = "<script>console.log( 'entro al php' );</script>";
+echo $output;
