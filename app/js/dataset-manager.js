@@ -14,6 +14,10 @@ function datasetManager(){
         DS_AR: {
             description: 'Connections 45',
             file: 'dataset_Cx45.json'
+        },
+        DS_Al: {
+            description: 'Connections all',
+            file: 'dataset_CxAll.json'
         }
     };
 
