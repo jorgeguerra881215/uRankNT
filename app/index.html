@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html>
+<html xmlns="http://www.w3.org/1999/html">
     <head>
         <title>uRank Test</title>
         <meta charset="UTF-8">
@@ -24,14 +24,28 @@
     <body>
         <header>                            <!-- top panel -->
             <select id="select-dataset"></select>
-            <select id="select-download">
+            <select id="select-download" style="display: none">
                 <option value="2files">Keyword &amp; ranking in 2 files</option>
                 <option value="1file">All in 1 file</option>
             </select>
-            <input type="button" id="btn-download" value="Download"/>
+            <input type="button" id="btn-download" value="Download" style="display: none"/>
             <input type="button" id="btn-save-labeled" value="Save Labeling"/>
+            <input type="button" id="btn-show-legend" title="Connection Legend" value="Legend"/>
         </header>
-
+        <div id="dialog" title="Connection Legend">
+            <p>
+                SP => Strong Periodicity </br>
+                WP => Weak Periodicity </br>
+                WNP=> Weak Non-Periodicity </br>
+                SNP=> Strong Non-Periodicity </br>
+                DS => Duration Short </br>
+                DM => Duration Medium </br>
+                DL => Duration Long </br>
+                SS => Size Small </br>
+                SM => Size Medium </br>
+                SL => Size Large </br>
+            </p>
+        </div>
         <div class="main-panel">
             <div class="tagCloud-control-panel" style="display: none">
                 <label class="label-slider" for="stfValue">STF connections:</label>
@@ -120,7 +134,10 @@
 		</div>
 
         <div class="processing-message">Processing Data...</div>
-	
+
+    <!-- using bundle to measure web application performance -->
+    <!--<script type="text/javascript" src="../bower_components/bundle.js"></script>-->
+    <!--<script type="text/javascript" src="../bower_components/bundle.min.js"></script>-->
 	<!-- bower:js -->
 	<script src="../bower_components/jquery/dist/jquery.js"></script>
 	<script src="../bower_components/colorbrewer/colorbrewer.js"></script>
@@ -145,7 +162,6 @@
 	<script src="../bower_components/urank/blocks/tagBox.js"></script>
 	<script src="../bower_components/urank/blocks/tagCloud.js"></script>
 	<script src="../bower_components/urank/blocks/visCanvas.js"></script>
-    <!--<script src="../bower_components/urank/blocks/cloudControl.js"></script>-->
 	<script src="../bower_components/urank/modules/tagcloud/tagCloudDefault.js"></script>
 	<script src="../bower_components/urank/modules/viscanvas/ranking.js"></script>
 	<script src="../bower_components/urank/helper/globals.js"></script>
@@ -160,7 +176,7 @@
 	<script src="../bower_components/urank/helper/jquery_functions/pin.js"></script>
 	<script src="../bower_components/urank/urank.js"></script>
 	<!-- endbower -->
-
+        <!--<script src="../bower_components/urank/blocks/cloudControl.js"></script>-->
         <!-- injector:js -->
         <!-- endinjector -->
 
@@ -168,7 +184,25 @@
         <script type="text/javascript" src="js/dataset-manager.js" charset="utf-8" ></script>
         <script type="text/javascript" src="js/file-generator.js" charset="utf-8"></script>
         <script type="text/javascript" src="js/main.js" charset="utf-8"></script>
+        <script>
+            $( function() {
+                $( "#dialog" ).dialog({
+                    autoOpen: false,
+                    show: {
+                        effect: "blind",
+                        duration: 100
+                    },
+                    hide: {
+                        effect: "blind",
+                        duration: 100
+                    }
+                });
 
+                $( "#btn-show-legend" ).on( "click", function() {
+                    $( "#dialog" ).dialog( "open" );
+                });
+            } );
+        </script>
 
     </body>
 </html>
