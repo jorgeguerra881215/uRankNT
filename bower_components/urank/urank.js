@@ -388,6 +388,9 @@ var enterLog = function(value){
          */
         onFindNotLabeled: function(value,aux){
             console.log(value);
+            //Set all bar visible
+            $('g.urank-ranking-stackedbar').css('display','none');
+            $('g.urank-ranking-stackedbar').attr('display','none');
             value = {
                 unlabelled:$('#chek-find-not-labeled').is(':checked') ? $('#chek-find-not-labeled').attr('value') : null,
                 bot:$('#chek-find-botnet').is(':checked') ? $('#chek-find-botnet').attr('value') : null,
@@ -399,6 +402,7 @@ var enterLog = function(value){
                 protocol:$('#filter-protocol:checked').length > 0 ? $('#filter-protocol').attr('value') : null
             }
             var list = [];
+            var initial_Ytranslate = 0.5198514710082833;
             _this.data.forEach(function(d, i){
                 var label = d.title;
                 var attributes = d.connection_id.split('-');
@@ -414,7 +418,14 @@ var enterLog = function(value){
 
                 if(valid){
                     list.push(d.id);
+                    $('g#urank-ranking-stackedbar-'+ d.id).css('display','block');
+                    $('g#urank-ranking-stackedbar-'+ d.id).attr('display','block');
                 }
+            });
+
+            $('g.urank-ranking-stackedbar[display=block]').each(function(index, element){
+                $(this).attr( 'transform', 'translate(0, ' + initial_Ytranslate + ')');
+                initial_Ytranslate = initial_Ytranslate + 25.99257355;
             });
 
             contentList.selectManyListItem(list);
