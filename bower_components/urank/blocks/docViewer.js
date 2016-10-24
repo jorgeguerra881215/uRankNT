@@ -214,9 +214,17 @@ var DocViewer = (function(){
         });
 
         // Append content section for snippet placeholder
-        var $contentSectionOuter = $('<div style="height: 200px"></div>').appendTo($root).addClass(contentSectionOuterClass);
-        $contentSection = $('<div></div>').appendTo($contentSectionOuter).addClass(contentSectionClass);
-        $('<p></p>').appendTo($contentSection);
+        //var $contentSectionOuter = $('<div style="height: 200px"></div>').appendTo($root).addClass(contentSectionOuterClass);
+        $contentSection = $('<div id="tabs" style="height: 200px; display: none"></div>').appendTo($root).addClass(contentSectionOuterClass); //$('<div></div>').appendTo($contentSectionOuter).addClass(contentSectionClass);
+
+        $('<ul><li><a href="#tabs-1">Letter</a></li><li><a href="#tabs-2">Connection Sequence</a></li></ul>').appendTo($contentSection);
+        var $contentTab1 = $('<div id="tabs-1"></div>').appendTo($contentSection);
+        var $p = $('<p id="contentTabs-1"></p>').appendTo($contentTab1);
+        var $contentTab2 = $('<div id="tabs-2"></div>').appendTo($contentSection);
+        $('<p id="contentTabs-2"></p>').appendTo($contentTab2);
+        $( "#tabs" ).tabs();
+
+        //$('<p></p>').appendTo($contentSection);
 
         //Statistic section
         var $statisticSection = $("<div id='doc-viewer-statistic'></div>").appendTo($root);
@@ -330,6 +338,8 @@ var DocViewer = (function(){
             SNP:0,
             WNP:0
         };
+        var all_letters = ['a','b','c','d','e','f','g','h','i','A','B','C','D','E'
+            ,'F','G','H','I','r','s','t','u','v','w','x','y','z','R','S','T','U','V','W','X','Y','Z'];
         letters.forEach(function(item){
             letter_porcent[item] = item in letter_porcent ? letter_porcent[item] + initial_porcent : initial_porcent;
             var strong_periodicReg = /[a-i]/;
@@ -345,13 +355,28 @@ var DocViewer = (function(){
         });
 
         var letter_data = [];
-        $.each(letter_porcent , function(index, value) {
+        all_letters.forEach(function(item){
+            if(item in letter_porcent){
+                var element = {
+                    date: item,
+                    value: letter_porcent[item]
+                }
+                letter_data.push(element)
+            }else{
+                var element = {
+                    date: item,
+                    value: 0
+                }
+                letter_data.push(element)
+            }
+        });
+        /*$.each(letter_porcent , function(index, value) {
             var element = {
                 date: index,
                 value: value
             }
             letter_data.push(element)
-        });
+        });*/
 
         var periodic_data = [];
         $.each(characteristic_porcent, function(index,value){
@@ -375,9 +400,21 @@ var DocViewer = (function(){
             $(detailItemIdPrefix + '' + facet).html(document.facets[facet]);
         });
 
-        $contentSection.empty();
-        var $p = $('<p></p>').appendTo($contentSection).html(getStyleWordSecuencie(document.description, keywords, colorScale));
-        $p.hide().fadeIn('slow').scrollTo('top');
+        var sequence = '';
+        var words = document.description.split(' ');
+        for(var i = 0; i < words.length; i++){
+            if(words[i].length != words[i+1].length){
+                sequence += words[i];
+                break;
+            }
+            sequence += words[i][0];
+        }
+        $( "#tabs" ).css('display','block');
+        $('#contentTabs-1').html(getStyleWordSecuencie(document.description, keywords, colorScale));
+        $('#contentTabs-2').html(sequence);
+
+        //var $p = $('<p></p>').appendTo($contentSection).html(getStyleWordSecuencie(document.description, keywords, colorScale));
+        //$p.hide().fadeIn('slow').scrollTo('top');
 
         //Saving logs register
         urank.enterLog('Connection - '+ _document.id);
