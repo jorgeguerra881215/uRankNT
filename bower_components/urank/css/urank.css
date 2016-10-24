@@ -601,8 +601,18 @@ Document Panel (right) - for visualizing highlighted text
     margin: 5px;
     background: -webkit-linear-gradient(top, rgba(185, 185, 185, 1), rgba(180, 180, 180, 1));
     box-shadow: inset .2em .2em .5em #ccc, inset -.2em -.2em .5em #ccc;
+    /*overflow-y: auto;
+    overflow-x: hidden;*/
+}
+
+div#tabs-1,div#tabs-2{
+    height: 160px;
     overflow-y: auto;
     overflow-x: hidden;
+    padding: 0;
+}
+div#tabs-2{
+    word-wrap: break-word;
 }
 
 .urank-docviewer-content-section {
@@ -785,6 +795,7 @@ div.urank-docviewer-divisor{
     width: 50%;
     height: 200px
 }
+
 
 /**********************************************************************************************************************
 *
