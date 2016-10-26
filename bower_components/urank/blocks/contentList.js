@@ -594,7 +594,7 @@ var ContentList = (function(){
             var $titleDiv = $("<div></div>").appendTo($li).addClass(liTitleContainerClass);
             var html = createVisualRepresentation(d);//&nbsp;
             var index = i+1 < 10 ? (i+1)+'-'+'&nbsp;&nbsp;' : (i+1)+'-';
-            var list_element_container = $('<div><div style="float: left; width: 20%">'+ligth_circle+'<label>'+index+'</label></div></div>', { id: 'urank-list-li-title-' + i, class: liTitleClass +' '+ liTitleClassDefault, html: html, title: d.title + '\n' + d.description }).appendTo($titleDiv);
+            var list_element_container = $('<div><div style="float: left; width: 25%">'+ligth_circle+'<label>'+index+'</label></div></div>', { id: 'urank-list-li-title-' + i, class: liTitleClass +' '+ liTitleClassDefault, html: html, title: d.title + '\n' + d.description }).appendTo($titleDiv);
             var visual_representation = $('<div style="float: left; width: 75%"></div>').appendTo(list_element_container);
             html.forEach(function(label){
                label.appendTo(visual_representation);

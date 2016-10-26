@@ -215,7 +215,7 @@ var DocViewer = (function(){
 
         // Append content section for snippet placeholder
         //var $contentSectionOuter = $('<div style="height: 200px"></div>').appendTo($root).addClass(contentSectionOuterClass);
-        $contentSection = $('<div id="tabs" style="height: 200px; display: none"></div>').appendTo($root).addClass(contentSectionOuterClass); //$('<div></div>').appendTo($contentSectionOuter).addClass(contentSectionClass);
+        $contentSection = $('<div id="tabs" style="height: 160px; display: none"></div>').appendTo($root).addClass(contentSectionOuterClass); //$('<div></div>').appendTo($contentSectionOuter).addClass(contentSectionClass);
 
         $('<ul><li><a href="#tabs-1">Letter</a></li><li><a href="#tabs-2">Connection Sequence</a></li></ul>').appendTo($contentSection);
         var $contentTab1 = $('<div id="tabs-1"></div>').appendTo($contentSection);

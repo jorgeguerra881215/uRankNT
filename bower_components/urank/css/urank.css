@@ -606,7 +606,7 @@ Document Panel (right) - for visualizing highlighted text
 }
 
 div#tabs-1,div#tabs-2{
-    height: 160px;
+    height: 120px;
     overflow-y: auto;
     overflow-x: hidden;
     padding: 0;
