@@ -339,10 +339,21 @@ var ContentList = (function(){
         liDarkBackgroundClass = c.liDarkBackgroundClass == '' ? liDarkBackgroundClass : c.liDarkBackgroundClass;
 
     };
+
+    var vectorDistance = function(v1,v2){
+        var vector1 = vi.split(','), vector2 = v2.split(',');
+        var result = 0;
+        vector1.forEach(function(d,i){
+            result += Math.abs(d - vector2[i]);
+        });
+        return result;
+    }
+
     /**
-     * Creatin HeatMap for visual representation
+     * Creating HeatMap for visual representation
      * @param connection
      * @returns {Array}
+     * TODO Rebuild this method to use characteristic vector
      */
     var createVisualRepresentation = function(connection){
         //Periodicity feature
@@ -554,6 +565,11 @@ var ContentList = (function(){
             .on('scroll', onScroll);
 
         $ul = $('<ul></ul>').appendTo($scrollable).addClass(ulClass +' '+ ulClassDefault);
+
+        _this.data.forEach(function(d, i){
+            var characteristicVector = urank.calculateCharacteristicVector(d);
+            d.characteristicVector = characteristicVector;
+        });
 
         _this.data.forEach(function(d, i){
             // li element
