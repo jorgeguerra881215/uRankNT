@@ -111,6 +111,138 @@ var enterLog = function(value){
 
     return false;
 }
+    var calculateCharacteristicVector = function(value){
+        var rep_sNP = /[R-Z]/, count_sNP = 0;
+        var rep_wNP = /[r-z]/, count_wNP = 0;
+        var rep_wP = /[A-I]/, count_wP = 0;
+        var rep_sP = /[a-i]/, count_sP = 0;
+        //Duration feature
+        var rep_dS = {a:1,A:1,r:1,R:1,d:1,D:1,u:1,U:1,g:1,G:1,x:1,X:1}, count_dS = 0;
+        var rep_dM = {b:1,B:1,s:1,S:1,e:1,E:1,v:1,V:1,h:1,H:1,y:1,Y:1}, count_dM = 0;
+        var rep_dL = {c:1,C:1,t:1,T:1,f:1,F:1,w:1,W:1,i:1,I:1,z:1,Z:1}, count_dL = 0;
+        //Size feature
+        var rep_sS = {a:1,A:1,b:1,B:1,c:1,C:1,r:1,R:1,s:1,S:1,t:1,T:1}, count_sS = 0;
+        var rep_sM = {d:1,D:1,e:1,E:1,f:1,F:1,u:1,U:1,v:1,V:1,w:1,W:1}, count_sM = 0;
+        var rep_sL = {g:1,G:1,h:1,H:1,i:1,I:1,x:1,X:1,y:1,Y:1,z:1,Z:1}, count_sL = 0;
+
+        var description = value;
+        var count  = description.length;
+        var i = count
+        while(i--){
+            var letter = description[i];
+            //Count periodicity feature
+            if(rep_sNP.test(letter)){
+                count_sNP ++;
+            }
+            else if(rep_wNP.test(letter)){
+                count_wNP++;
+            }
+            else if(rep_wP.test(letter)){
+                count_wP++;
+            }
+            else if(rep_sP.test(letter)){
+                count_sP++;
+            }
+
+            //Count duration feature
+            if(letter in rep_dS){
+                count_dS++;
+            }
+            else if(letter in rep_dM){
+                count_dM++;
+            }
+            else if(letter in rep_dL){
+                count_dL++;
+            }
+
+            //Count size feature
+            if(letter in rep_sS){
+                count_sS++;
+            }
+            else if(letter in rep_sM){
+                count_sM++;
+            }
+            else if(letter in rep_sL){
+                count_sL++;
+            }
+        }
+
+        var count_of_letter = count_sNP + count_wNP + count_wP + count_sP;
+
+        //Count periodicity feature
+        var porcent_count_sNP = ((count_sNP * 100)/ count_of_letter)/100;
+        var porcent_count_wNP = ((count_wNP * 100)/ count_of_letter)/100;
+        var porcent_count_wP = ((count_wP * 100)/ count_of_letter)/100;
+        var porcent_count_sP = ((count_sP * 100)/ count_of_letter)/100;
+
+        //Count duration feature
+        var porcent_count_dS = ((count_dS * 100)/ count_of_letter)/100;
+        var porcent_count_dM = ((count_dM * 100)/ count_of_letter)/100;
+        var porcent_count_dL = ((count_dL * 100)/ count_of_letter)/100;
+
+        //Count size feature
+        var porcent_count_sS = ((count_sS * 100)/ count_of_letter)/100;
+        var porcent_count_sM = ((count_sM * 100)/ count_of_letter)/100;
+        var porcent_count_sL = ((count_sL * 100)/ count_of_letter)/100;
+
+        return  porcent_count_sNP.toString() +','+
+            porcent_count_wNP.toString() +','+
+            porcent_count_wP.toString() +','+
+            porcent_count_sP.toString() +','+
+            porcent_count_dS.toString() +','+
+            porcent_count_dM.toString() +','+
+            porcent_count_dL.toString() +','+
+            porcent_count_sS.toString() +','+
+            porcent_count_sM.toString() +','+
+            porcent_count_sL.toString();
+    }
+
+    var getLetterSequences = function(data){
+        var sequence = '';
+        var words = data.split(' ');
+        for(var i = 0; i < words.length; i++){
+            if(words[i].length != words[i+1].length){
+                sequence += words[i];
+                break;
+            }
+            sequence += words[i][0];
+        }
+        return sequence;
+    }
+
+    var vectorDistance = function(v1,v2){
+        var vector1 = v1.split(','), vector2 = v2.split(',');
+        var result = 0;
+        vector1.forEach(function(d,i){
+            result += Math.abs(parseFloat(d) - parseFloat(vector2[i]));
+        });
+        return result;
+    }
+
+    var sortBySimilarityToTheFirstConnection = function(data){
+        var documentReference = null;
+        var conexionSimilarity = {};
+        var result = [];
+        data.forEach(function(item,index){
+            var letterSequences = getLetterSequences(item.description);
+            var characteristicVector = calculateCharacteristicVector(letterSequences);
+            item.letterSequence = letterSequences;
+            item.characteristicVector = characteristicVector;
+            if(documentReference == null){
+                documentReference = characteristicVector;
+            }
+            var diference = vectorDistance(documentReference, characteristicVector);
+            conexionSimilarity[diference] = item;
+        });
+        Object.keys(conexionSimilarity).sort(function(a,b){return a-b}).forEach(function(key,i){
+            result.push(conexionSimilarity[key]);
+        });
+        return result;
+    }
+
+    var processingData = function(data){
+        return sortBySimilarityToTheFirstConnection(data);
+    }
 
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -135,10 +267,11 @@ var enterLog = function(value){
             var keywordExtractor = new KeywordExtractor(keywordExtractorOptions);
 
             //  Clean documents and add them to the keyword extractor
-            _this.data = typeof data == 'string' ? JSON.parse(data) : data.slice();
+            var primaryData = typeof data == 'string' ? JSON.parse(data) : data.slice();
+            _this.data = processingData(primaryData);
 
             _this.data.forEach(function(d, i){
-                d.characteristicVector = "";
+                //d.characteristicVector = "";
                 d.index = i;
                 //d.title = d.title.clean();
                 d.description = d.description.clean();
@@ -450,93 +583,6 @@ var enterLog = function(value){
             return false;
         },
 
-        onCalculateCharacteristicVector:function(value){
-            var connection = value;
-            var rep_sNP = /[R-Z]/, count_sNP = 0;
-            var rep_wNP = /[r-z]/, count_wNP = 0;
-            var rep_wP = /[A-I]/, count_wP = 0;
-            var rep_sP = /[a-i]/, count_sP = 0;
-            //Duration feature
-            var rep_dS = {a:1,A:1,r:1,R:1,d:1,D:1,u:1,U:1,g:1,G:1,x:1,X:1}, count_dS = 0;
-            var rep_dM = {b:1,B:1,s:1,S:1,e:1,E:1,v:1,V:1,h:1,H:1,y:1,Y:1}, count_dM = 0;
-            var rep_dL = {c:1,C:1,t:1,T:1,f:1,F:1,w:1,W:1,i:1,I:1,z:1,Z:1}, count_dL = 0;
-            //Size feature
-            var rep_sS = {a:1,A:1,b:1,B:1,c:1,C:1,r:1,R:1,s:1,S:1,t:1,T:1}, count_sS = 0;
-            var rep_sM = {d:1,D:1,e:1,E:1,f:1,F:1,u:1,U:1,v:1,V:1,w:1,W:1}, count_sM = 0;
-            var rep_sL = {g:1,G:1,h:1,H:1,i:1,I:1,x:1,X:1,y:1,Y:1,z:1,Z:1}, count_sL = 0;
-
-            var description = connection.description;
-            var count  = description.length;
-            var i = count
-            while(i--){
-                var letter = description[i];
-                //Count periodicity feature
-                if(rep_sNP.test(letter)){
-                    count_sNP ++;
-                }
-                else if(rep_wNP.test(letter)){
-                    count_wNP++;
-                }
-                else if(rep_wP.test(letter)){
-                    count_wP++;
-                }
-                else if(rep_sP.test(letter)){
-                    count_sP++;
-                }
-
-                //Count duration feature
-                if(letter in rep_dS){
-                    count_dS++;
-                }
-                else if(letter in rep_dM){
-                    count_dM++;
-                }
-                else if(letter in rep_dL){
-                    count_dL++;
-                }
-
-                //Count size feature
-                if(letter in rep_sS){
-                    count_sS++;
-                }
-                else if(letter in rep_sM){
-                    count_sM++;
-                }
-                else if(letter in rep_sL){
-                    count_sL++;
-                }
-            }
-
-            var count_of_letter = count_sNP + count_wNP + count_wP + count_sP;
-
-            //Count periodicity feature
-            var porcent_count_sNP = (count_sNP * 100)/ count_of_letter;
-            var porcent_count_wNP = (count_wNP * 100)/ count_of_letter;
-            var porcent_count_wP = (count_wP * 100)/ count_of_letter;
-            var porcent_count_sP = (count_sP * 100)/ count_of_letter;
-
-            //Count duration feature
-            var porcent_count_dS = (count_dS * 100)/ count_of_letter;
-            var porcent_count_dM = (count_dM * 100)/ count_of_letter;
-            var porcent_count_dL = (count_dL * 100)/ count_of_letter;
-
-            //Count size feature
-            var porcent_count_sS = (count_sS * 100)/ count_of_letter;
-            var porcent_count_sM = (count_sM * 100)/ count_of_letter;
-            var porcent_count_sL = (count_sL * 100)/ count_of_letter;
-
-            return  porcent_count_sNP.toString() +','+
-                porcent_count_wNP.toString() +','+
-                porcent_count_wP.toString() +','+
-                porcent_count_sP.toString() +','+
-                porcent_count_dS.toString() +','+
-                porcent_count_dM.toString() +','+
-                porcent_count_dL.toString() +','+
-                porcent_count_sS.toString() +','+
-                porcent_count_sM.toString() +','+
-                porcent_count_sL.toString();
-        },
-
         onFindBotnet:function(value){
             var botnets = [];
             _this.data.forEach(function(d, i){
@@ -775,7 +821,6 @@ var enterLog = function(value){
         rankByMaximumScore: EVTHANDLER.onRankByMaximumScore,
         findNotLabeled: EVTHANDLER.onFindNotLabeled,
         enterLog:EVTHANDLER.onEnterLog,
-        calculateCharacteristicVector:EVTHANDLER.onCalculateCharacteristicVector,
         //findBotnet:EVTHANDLER.onFindBotnet,
         //checkfindNotLabeled: EVTHANDLER.onChekFindNotLabeled(),
         clear: EVTHANDLER.onClear,

@@ -33,7 +33,7 @@ var ContentList = (function(){
         watchiconDefaultClass = 'urank-list-li-button-watchicon-default',
         liHoveredClass = 'hovered',
         liWatchedClass = 'watched',
-        // default-style classes
+    // default-style classes
         ulClassDefault = ulClass + '-default',
         liClassDefault = liClass + '-default',
         liTitleClassDefault = liTitleClass + '-default';
@@ -101,15 +101,15 @@ var ContentList = (function(){
             mouseenter: onLiMouseEnter,
             mouseleave: onLiMouseLeave
         })
-        .on({
-            click: onLiClick,
-            mouseenter: onLiMouseEnter,
-            mouseleave: onLiMouseLeave
-        })
-        .off('click', '.'+watchiconClass, $li.attr(urankIdAttr), onWatchiconClick)
-        .off('click', '.'+faviconClass, $li.attr(urankIdAttr), onFaviconClick)
-        .on('click', '.'+watchiconClass, $li.attr(urankIdAttr), onWatchiconClick)
-        .on('click', '.'+faviconClass, $li.attr(urankIdAttr), onFaviconClick);
+            .on({
+                click: onLiClick,
+                mouseenter: onLiMouseEnter,
+                mouseleave: onLiMouseLeave
+            })
+            .off('click', '.'+watchiconClass, $li.attr(urankIdAttr), onWatchiconClick)
+            .off('click', '.'+faviconClass, $li.attr(urankIdAttr), onFaviconClick)
+            .on('click', '.'+watchiconClass, $li.attr(urankIdAttr), onWatchiconClick)
+            .on('click', '.'+faviconClass, $li.attr(urankIdAttr), onFaviconClick);
     };
 
 
@@ -228,13 +228,13 @@ var ContentList = (function(){
                 var duration = timeLapse * (i+1);
 
                 $item.animate({ top: shift }, 0, easing)
-                .queue(function(){
-                    $(this).animate({ top: 0 }, duration, easing)
-                })
-                .queue(function(){
-                    $(this).css('top', '');
-                })
-                .dequeue();
+                    .queue(function(){
+                        $(this).animate({ top: 0 }, duration, easing)
+                    })
+                    .queue(function(){
+                        $(this).css('top', '');
+                    })
+                    .dequeue();
             }
         });
     };
@@ -423,136 +423,136 @@ var ContentList = (function(){
         var porcent_count_sNP = (count_sNP * 100)/ count_of_letter;
         sNP.css('background',colors[Math.floor(porcent_count_sNP/ranges)]);
         /*if(porcent_count_sNP < 25){
-            sNP.css('background','#FFF0A5');
-        }
-        else if(porcent_count_sNP > 25 && porcent_count_sNP < 50){
-            sNP.css('background','#FFB03B');
-        }
-        else if(porcent_count_sNP > 50 && porcent_count_sNP < 75){
-            sNP.css('background','#B64926');
-        }
-        else{
-            sNP.css('background','#8E2800');
-        }*/
+         sNP.css('background','#FFF0A5');
+         }
+         else if(porcent_count_sNP > 25 && porcent_count_sNP < 50){
+         sNP.css('background','#FFB03B');
+         }
+         else if(porcent_count_sNP > 50 && porcent_count_sNP < 75){
+         sNP.css('background','#B64926');
+         }
+         else{
+         sNP.css('background','#8E2800');
+         }*/
 
         var porcent_count_wNP = (count_wNP * 100)/ count_of_letter;
         wNP.css('background',colors[Math.floor(porcent_count_wNP/ranges)]);
         /*if(porcent_count_wNP < 25){
-            wNP.css('background','#FFF0A5');
-        }
-        else if(porcent_count_wNP > 25 && porcent_count_wNP < 50){
-            wNP.css('background','#FFB03B');
-        }
-        else if(porcent_count_wNP > 50 && porcent_count_wNP < 75){
-            wNP.css('background','#B64926');
-        }
-        else{
-            wNP.css('background','#8E2800');
-        }*/
+         wNP.css('background','#FFF0A5');
+         }
+         else if(porcent_count_wNP > 25 && porcent_count_wNP < 50){
+         wNP.css('background','#FFB03B');
+         }
+         else if(porcent_count_wNP > 50 && porcent_count_wNP < 75){
+         wNP.css('background','#B64926');
+         }
+         else{
+         wNP.css('background','#8E2800');
+         }*/
 
         var porcent_count_wP = (count_wP * 100)/ count_of_letter;
         wP.css('background',colors[Math.floor(porcent_count_wP/ranges)]);
         /*if(porcent_count_wP < 25){
-            wP.css('background','#FFF0A5');
-        }
-        else if(porcent_count_wP > 25 && porcent_count_wP < 50){
-            wP.css('background','#FFB03B');
-        }
-        else if(porcent_count_wP > 50 && porcent_count_wP < 75){
-            wP.css('background','#B64926');
-        }
-        else{
-            wP.css('background','#8E2800');
-        }*/
+         wP.css('background','#FFF0A5');
+         }
+         else if(porcent_count_wP > 25 && porcent_count_wP < 50){
+         wP.css('background','#FFB03B');
+         }
+         else if(porcent_count_wP > 50 && porcent_count_wP < 75){
+         wP.css('background','#B64926');
+         }
+         else{
+         wP.css('background','#8E2800');
+         }*/
 
         var porcent_count_sP = (count_sP * 100)/ count_of_letter;
         sP.css('background',colors[Math.floor(porcent_count_sP/ranges)]);
         /*if(porcent_count_sP < 25){
-            sP.css('background','#FFF0A5');
-        }
-        else if(porcent_count_sP > 25 && porcent_count_sP < 50){
-            sP.css('background','#FFB03B');
-        }
-        else if(porcent_count_sP > 50 && porcent_count_sP < 75){
-            sP.css('background','#B64926');
-        }
-        else{
-            sP.css('background','#8E2800');
-        }*/
+         sP.css('background','#FFF0A5');
+         }
+         else if(porcent_count_sP > 25 && porcent_count_sP < 50){
+         sP.css('background','#FFB03B');
+         }
+         else if(porcent_count_sP > 50 && porcent_count_sP < 75){
+         sP.css('background','#B64926');
+         }
+         else{
+         sP.css('background','#8E2800');
+         }*/
 
         //Count duration feature
         var porcent_count_dS = (count_dS * 100)/ count_of_letter;
         dS.css('background',colors[Math.floor(porcent_count_dS/ranges)]);
         /*if(porcent_count_dS < 3.34){
-            dS.css('background','#FFF0A5');
-        }
-        else if(porcent_count_dS > 3.34 && porcent_count_dS < 6.67){
-            dS.css('background','#FFB03B');
-        }
-        else if(porcent_count_dS > 6.67){
-            dS.css('background','#B64926');
-        }*/
+         dS.css('background','#FFF0A5');
+         }
+         else if(porcent_count_dS > 3.34 && porcent_count_dS < 6.67){
+         dS.css('background','#FFB03B');
+         }
+         else if(porcent_count_dS > 6.67){
+         dS.css('background','#B64926');
+         }*/
 
         var porcent_count_dM = (count_dM * 100)/ count_of_letter;
         dM.css('background',colors[Math.floor(porcent_count_dM/ranges)]);
         /*if(porcent_count_dM < 3.34){
-            dM.css('background','#FFF0A5');
-        }
-        else if(porcent_count_dM > 3.34 && porcent_count_dM < 6.67){
-            dM.css('background','#FFB03B');
-        }
-        else if(porcent_count_dM > 6.67){
-            dM.css('background','#B64926');
-        }*/
+         dM.css('background','#FFF0A5');
+         }
+         else if(porcent_count_dM > 3.34 && porcent_count_dM < 6.67){
+         dM.css('background','#FFB03B');
+         }
+         else if(porcent_count_dM > 6.67){
+         dM.css('background','#B64926');
+         }*/
 
         var porcent_count_dL = (count_dL * 100)/ count_of_letter;
         dL.css('background',colors[Math.floor(porcent_count_dL/ranges)]);
         /*if(porcent_count_dL < 3.34){
-            dL.css('background','#FFF0A5');
-        }
-        else if(porcent_count_dL > 3.34 && porcent_count_dL < 6.67){
-            dL.css('background','#FFB03B');
-        }
-        else if(porcent_count_dL > 6.67){
-            dL.css('background','#B64926');
-        }*/
+         dL.css('background','#FFF0A5');
+         }
+         else if(porcent_count_dL > 3.34 && porcent_count_dL < 6.67){
+         dL.css('background','#FFB03B');
+         }
+         else if(porcent_count_dL > 6.67){
+         dL.css('background','#B64926');
+         }*/
 
         //Count size feature
         var porcent_count_sS = (count_sS * 100)/ count_of_letter;
         sS.css('background',colors[Math.floor(porcent_count_sS/ranges)]);
         /*if(porcent_count_sS < 3.34){
-            sS.css('background','#FFF0A5');
-        }
-        else if(porcent_count_sS > 3.34 && porcent_count_sS < 6.67){
-            sS.css('background','#FFB03B');
-        }
-        else if(porcent_count_sS > 6.67){
-            sS.css('background','#B64926');
-        }*/
+         sS.css('background','#FFF0A5');
+         }
+         else if(porcent_count_sS > 3.34 && porcent_count_sS < 6.67){
+         sS.css('background','#FFB03B');
+         }
+         else if(porcent_count_sS > 6.67){
+         sS.css('background','#B64926');
+         }*/
 
         var porcent_count_sM = (count_sM * 100)/ count_of_letter;
         sM.css('background',colors[Math.floor(porcent_count_sM/ranges)]);
         /*if(porcent_count_sM < 3.34){
-            sM.css('background','#FFF0A5');
-        }
-        else if(porcent_count_sM > 3.34 && porcent_count_sM < 6.67){
-            sM.css('background','#FFB03B');
-        }
-        else if(porcent_count_sM > 6.67){
-            sM.css('background','#B64926');
-        }*/
+         sM.css('background','#FFF0A5');
+         }
+         else if(porcent_count_sM > 3.34 && porcent_count_sM < 6.67){
+         sM.css('background','#FFB03B');
+         }
+         else if(porcent_count_sM > 6.67){
+         sM.css('background','#B64926');
+         }*/
 
         var porcent_count_sL = (count_sL * 100)/ count_of_letter;
         sL.css('background',colors[Math.floor(porcent_count_sL/ranges)]);
         /*if(porcent_count_sL < 3.34){
-            sL.css('background','#FFF0A5');
-        }
-        else if(porcent_count_sL > 3.34 && porcent_count_sL < 6.67){
-            sL.css('background','#FFB03B');
-        }
-        else if(porcent_count_sL > 6.67){
-            sL.css('background','#B64926');
-        }*/
+         sL.css('background','#FFF0A5');
+         }
+         else if(porcent_count_sL > 3.34 && porcent_count_sL < 6.67){
+         sL.css('background','#FFB03B');
+         }
+         else if(porcent_count_sL > 6.67){
+         sL.css('background','#B64926');
+         }*/
 
         return [sP,wP,wNP,sNP,dS,dM,dL,sS,sM,sL]
 
@@ -565,12 +565,6 @@ var ContentList = (function(){
             .on('scroll', onScroll);
 
         $ul = $('<ul></ul>').appendTo($scrollable).addClass(ulClass +' '+ ulClassDefault);
-
-        _this.data.forEach(function(d, i){
-            var characteristicVector = urank.calculateCharacteristicVector(d);
-            d.characteristicVector = characteristicVector;
-        });
-
         _this.data.forEach(function(d, i){
             // li element
             var $li = $('<li></li>', { 'urank-id': d.id }).appendTo($ul).addClass(liClass +' '+ liClassDefault);
@@ -597,7 +591,7 @@ var ContentList = (function(){
             var list_element_container = $('<div><div style="float: left; width: 25%">'+ligth_circle+'<label>'+index+'</label></div></div>', { id: 'urank-list-li-title-' + i, class: liTitleClass +' '+ liTitleClassDefault, html: html, title: d.title + '\n' + d.description }).appendTo($titleDiv);
             var visual_representation = $('<div style="float: left; width: 75%"></div>').appendTo(list_element_container);
             html.forEach(function(label){
-               label.appendTo(visual_representation);
+                label.appendTo(visual_representation);
             });
 
             // buttons sectionh
@@ -607,13 +601,13 @@ var ContentList = (function(){
              * Modified by Jorch
              * Adding traffic light in the connection list to indicate the labeling process
 
-            var trafic_ligth = 'yellow-circle';
-            switch (d.title) {
+             var trafic_ligth = 'yellow-circle';
+             switch (d.title) {
                 case 'Botnet': trafic_ligth = 'red-circle'; break;
                 case 'Normal': trafic_ligth = 'green-circle'; break;
                 default: break;
             }
-            $("<span>",{'urank-span-id': d.id}).appendTo($buttonsDiv).addClass(faviconDefaultClass+' '+trafic_ligth+' '+'traffic-ligth');*/
+             $("<span>",{'urank-span-id': d.id}).appendTo($buttonsDiv).addClass(faviconDefaultClass+' '+trafic_ligth+' '+'traffic-ligth');*/
 
             $("<span style='margin-left: 8px'>").appendTo($buttonsDiv).addClass(watchiconClass+' '+watchiconDefaultClass+' '+watchiconOffClass);
             $("<span style='margin-left: -8px'>").appendTo($buttonsDiv).addClass(faviconClass+' '+faviconDefaultClass+' '+faviconOffClass);
@@ -652,10 +646,10 @@ var ContentList = (function(){
 
 
     /**
-    * @private     * Description
-    * @param {type} data : current ranking
-    * @param {type} status Description
-    */
+     * @private     * Description
+     * @param {type} data : current ranking
+     * @param {type} status Description
+     */
     var _update = function(data, status, selectedKeywords, colorScale) {
 
 
