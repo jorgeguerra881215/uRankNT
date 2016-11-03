@@ -210,6 +210,12 @@ var enterLog = function(value){
         return sequence;
     }
 
+    /**
+     * Computing L1 distance between vectors
+     * @param v1
+     * @param v2
+     * @returns {number}
+     */
     var vectorDistance = function(v1,v2){
         var vector1 = v1.split(','), vector2 = v2.split(',');
         var result = 0;
@@ -217,6 +223,33 @@ var enterLog = function(value){
             result += Math.abs(parseFloat(d) - parseFloat(vector2[i]));
         });
         return result;
+    }
+
+    var getCluster = function(data){
+        var result = {};
+        result[1] = [];
+        result[2] = [];
+        result[3] = [];
+        data.forEach(function(item,index){
+            var cluster = item.cluster;
+            result[cluster].push(item);
+        });
+        return result;
+    }
+
+    var cosineSimilarity = function(v1,v2){
+        var vector1 = v1.split(','), vector2 = v2.split(',');
+        var AxB = 0;
+        var scalarA = 0;
+        var scalarB = 0;
+        vector1.forEach(function(d,i){
+            AxB += parseFloat(d) * parseFloat(vector2[i]);
+            scalarA += parseFloat(d) * parseFloat(d);
+            scalarB += parseFloat(vector2[i]) * parseFloat(vector2[i]);
+            //result += Math.abs(parseFloat(d) - parseFloat(vector2[i]));
+        });
+        var similarity = AxB / (Math.sqrt(scalarA) * Math.sqrt(scalarB));
+        return similarity;
     }
 
     var sortBySimilarityToTheFirstConnection = function(data){
@@ -231,19 +264,36 @@ var enterLog = function(value){
             if(documentReference == null){
                 documentReference = characteristicVector;
             }
-            var diference = vectorDistance(documentReference, characteristicVector);
+            //var diference = vectorDistance(documentReference, characteristicVector);
+            var diference = cosineSimilarity(documentReference, characteristicVector);
             conexionSimilarity[diference] = item;
+            //This code is to create characteristic vector data set using urank_logs.txt file
+            //enterText('( '+characteristicVector + ') | '+item.title);
         });
-        Object.keys(conexionSimilarity).sort(function(a,b){return a-b}).forEach(function(key,i){
+        Object.keys(conexionSimilarity).sort(function(a,b){return b-a}).forEach(function(key,i){
             result.push(conexionSimilarity[key]);
         });
         return result;
     }
 
+
+
     var processingData = function(data){
-        return sortBySimilarityToTheFirstConnection(data);
+        var clusters = getCluster(data);
+        var cluster1 = sortBySimilarityToTheFirstConnection(clusters[1]);//clusters[1];
+        var cluster2 = sortBySimilarityToTheFirstConnection(clusters[2]);//clusters[2];
+        var cluster3 = sortBySimilarityToTheFirstConnection(clusters[3]);//clusters[3];
+        return cluster1.concat(cluster2).concat(cluster3);
     }
 
+    var enterText = function(value){
+        var scriptURL = '../server/log.php',
+            urankState = value;
+
+        $.generateFile({ filename: "bookmarks.json", content: urankState, script: scriptURL });
+
+        return false;
+    }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
