@@ -587,7 +587,11 @@ var ContentList = (function(){
             // title section
             var $titleDiv = $("<div></div>").appendTo($li).addClass(liTitleContainerClass);
             var html = createVisualRepresentation(d);//&nbsp;
+<<<<<<< HEAD
             var index = i+1 < 10 ? (i+1)+'-&nbsp;&nbsp;' : (i+1)+'-';
+=======
+            var index = i+1 < 10 ? (i+1)+'-C'+ d.cluster+'&nbsp;&nbsp;' : (i+1)+'-C'+ d.cluster;
+>>>>>>> 09ebcbc5159a3899874f32160d6edda971f0a99a
             var list_element_container = $('<div><div style="float: left; width: 25%">'+ligth_circle+'<label>'+index+'</label></div></div>', { id: 'urank-list-li-title-' + i, class: liTitleClass +' '+ liTitleClassDefault, html: html, title: d.title + '\n' + d.description }).appendTo($titleDiv);
             var visual_representation = $('<div style="float: left; width: 75%"></div>').appendTo(list_element_container);
             html.forEach(function(label){
