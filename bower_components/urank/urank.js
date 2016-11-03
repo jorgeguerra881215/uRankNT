@@ -268,11 +268,7 @@ var enterLog = function(value){
             var diference = cosineSimilarity(documentReference, characteristicVector);
             conexionSimilarity[diference] = item;
             //This code is to create characteristic vector data set using urank_logs.txt file
-<<<<<<< HEAD
-            enterText(characteristicVector + ','+item.title);
-=======
-            //enterText('( '+characteristicVector + ') | '+item.title);
->>>>>>> 09ebcbc5159a3899874f32160d6edda971f0a99a
+            //enterText(characteristicVector + ','+item.title);
         });
         Object.keys(conexionSimilarity).sort(function(a,b){return b-a}).forEach(function(key,i){
             result.push(conexionSimilarity[key]);
@@ -283,20 +279,11 @@ var enterLog = function(value){
 
 
     var processingData = function(data){
-<<<<<<< HEAD
-        /*var clusters = getCluster(data);
-        var cluster1 = sortBySimilarityToTheFirstConnection(clusters[1]);//clusters[1];
-        var cluster2 = sortBySimilarityToTheFirstConnection(clusters[2]);//clusters[2];
-        var cluster3 = sortBySimilarityToTheFirstConnection(clusters[3]);//clusters[3];
-        return cluster1.concat(cluster2).concat(cluster3);*/
-        return sortBySimilarityToTheFirstConnection(data);
-=======
         var clusters = getCluster(data);
         var cluster1 = sortBySimilarityToTheFirstConnection(clusters[1]);//clusters[1];
         var cluster2 = sortBySimilarityToTheFirstConnection(clusters[2]);//clusters[2];
         var cluster3 = sortBySimilarityToTheFirstConnection(clusters[3]);//clusters[3];
         return cluster1.concat(cluster2).concat(cluster3);
->>>>>>> 09ebcbc5159a3899874f32160d6edda971f0a99a
     }
 
     var enterText = function(value){
