@@ -4,7 +4,7 @@
 
     $.generateFile = function(options){
 
-        console.log(options);
+        //console.log(options);
         options = options || {};
 
         if(!options.script || !options.filename || !options.content){
@@ -44,7 +44,7 @@
             body.html(formHTML);
 
             var form = body.find('form');
-            console.log(options.script);
+            //console.log(options.script);
             form.attr('action',options.script);
             form.find('input[name=filename]').val(options.filename);
             form.find('input[name=content]').val(options.content);

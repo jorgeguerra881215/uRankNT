@@ -295,6 +295,9 @@
     cursor: pointer;
 }
 
+label.characteristic{
+    padding: 2px;
+}
 
 /***************	<li> background style (the first 3 can be overwritteny)  **************/
 

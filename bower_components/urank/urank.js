@@ -117,13 +117,13 @@ var enterLog = function(value){
         var rep_wP = /[A-I]/, count_wP = 0;
         var rep_sP = /[a-i]/, count_sP = 0;
         //Duration feature
-        var rep_dS = {a:1,A:1,r:1,R:1,d:1,D:1,u:1,U:1,g:1,G:1,x:1,X:1}, count_dS = 0;
-        var rep_dM = {b:1,B:1,s:1,S:1,e:1,E:1,v:1,V:1,h:1,H:1,y:1,Y:1}, count_dM = 0;
-        var rep_dL = {c:1,C:1,t:1,T:1,f:1,F:1,w:1,W:1,i:1,I:1,z:1,Z:1}, count_dL = 0;
+        var rep_dS = {a:1,A:1,r:1,R:1,d:1,D:1,u:1,U:1,g:1,G:1,x:1,X:1,1:1,4:1,7:1}, count_dS = 0;
+        var rep_dM = {b:1,B:1,s:1,S:1,e:1,E:1,v:1,V:1,h:1,H:1,y:1,Y:1,2:1,5:1,8:1}, count_dM = 0;
+        var rep_dL = {c:1,C:1,t:1,T:1,f:1,F:1,w:1,W:1,i:1,I:1,z:1,Z:1,3:1,6:1,9:1}, count_dL = 0;
         //Size feature
-        var rep_sS = {a:1,A:1,b:1,B:1,c:1,C:1,r:1,R:1,s:1,S:1,t:1,T:1}, count_sS = 0;
-        var rep_sM = {d:1,D:1,e:1,E:1,f:1,F:1,u:1,U:1,v:1,V:1,w:1,W:1}, count_sM = 0;
-        var rep_sL = {g:1,G:1,h:1,H:1,i:1,I:1,x:1,X:1,y:1,Y:1,z:1,Z:1}, count_sL = 0;
+        var rep_sS = {a:1,A:1,b:1,B:1,c:1,C:1,r:1,R:1,s:1,S:1,t:1,T:1,1:1,2:1,3:1}, count_sS = 0;
+        var rep_sM = {d:1,D:1,e:1,E:1,f:1,F:1,u:1,U:1,v:1,V:1,w:1,W:1,4:1,5:1,6:1}, count_sM = 0;
+        var rep_sL = {g:1,G:1,h:1,H:1,i:1,I:1,x:1,X:1,y:1,Y:1,z:1,Z:1,7:1,8:1,9:1}, count_sL = 0;
 
         var description = value;
         var count  = description.length;
@@ -167,7 +167,7 @@ var enterLog = function(value){
             }
         }
 
-        var count_of_letter = count_sNP + count_wNP + count_wP + count_sP;
+        var count_of_letter = count;//count_sNP + count_wNP + count_wP + count_sP;
 
         //Count periodicity feature
         var porcent_count_sNP = ((count_sNP * 100)/ count_of_letter)/100;
@@ -268,7 +268,7 @@ var enterLog = function(value){
             var diference = cosineSimilarity(documentReference, characteristicVector);
             conexionSimilarity[diference] = item;
             //This code is to create characteristic vector data set using urank_logs.txt file
-            //enterText(characteristicVector + ','+item.title);
+            //enterText(characteristicVector + ',' +letterSequences.length+','+item.title+','+item.label);
         });
         Object.keys(conexionSimilarity).sort(function(a,b){return b-a}).forEach(function(key,i){
             result.push(conexionSimilarity[key]);
@@ -284,6 +284,7 @@ var enterLog = function(value){
         var cluster2 = sortBySimilarityToTheFirstConnection(clusters[2]);//clusters[2];
         var cluster3 = sortBySimilarityToTheFirstConnection(clusters[3]);//clusters[3];
         return cluster1.concat(cluster2).concat(cluster3);
+        //return sortBySimilarityToTheFirstConnection(data);
     }
 
     var enterText = function(value){
@@ -571,7 +572,7 @@ var enterLog = function(value){
          * Created by Jorch
          */
         onFindNotLabeled: function(value,aux){
-            console.log(value);
+            //console.log(value);
             //Set all bar visible
             $('g.urank-ranking-stackedbar').css('display','none');
             $('g.urank-ranking-stackedbar').attr('display','none');
