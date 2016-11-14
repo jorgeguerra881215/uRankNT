@@ -296,6 +296,31 @@ var enterLog = function(value){
         return false;
     }
 
+    var getFilterParameter = function(value){
+        var ip_origen = [];
+        var ip_dest = [];
+        var port = [];
+        var protocol = [];
+        $('.filter-initial-port').each(function(index){
+            $('#filter-initial-port-'+index+':checked').length > 0 ? ip_origen.push($('#filter-initial-port-'+index).attr('value')): null;
+        });
+        $('.filter-end-port').each(function(index){
+            $('#filter-end-port-'+index+':checked').length > 0 ? ip_dest.push($('#filter-end-port-'+index).attr('value')): null;
+        });
+        $('.filter-port').each(function(index){
+            $('#filter-port-'+index+':checked').length > 0 ? port.push($('#filter-port-'+index).attr('value')): null;
+        });
+        $('.filter-protocol').each(function(index){
+            $('#filter-protocol-'+index+':checked').length > 0 ? protocol.push($('#filter-protocol-'+index).attr('value')): null;
+        });
+
+        value.initialIp = ip_origen;
+        value.endIp = ip_dest;
+        value.port = port;
+        value.protocol = protocol;
+
+    }
+
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     var EVTHANDLER = {
@@ -581,11 +606,18 @@ var enterLog = function(value){
                 bot:$('#chek-find-botnet').is(':checked') ? $('#chek-find-botnet').attr('value') : null,
                 notBot:$('#chek-find-normal').is(':checked') ? $('#chek-find-normal').attr('value') : null,
                 all:$('#chek-find-All').is(':checked') ? $('#chek-find-All').attr('value') : null,
-                initialIp:$('#filter-initial-port:checked').length > 0 ? $('#filter-initial-port').attr('value'): null,
+                initialIp:null,
+                endIp:null,
+                port:null,
+                protocol:null
+                /*initialIp:$('#filter-initial-port:checked').length > 0 ? $('#filter-initial-port').attr('value'): null,
                 endIp:$('#filter-end-port:checked').length > 0 ? $('#filter-end-port').attr('value') : null,
                 port:$('#filter-port:checked').length > 0 ? $('#filter-port').attr('value') : null,
-                protocol:$('#filter-protocol:checked').length > 0 ? $('#filter-protocol').attr('value') : null
+                protocol:$('#filter-protocol:checked').length > 0 ? $('#filter-protocol').attr('value') : null*/
             }
+
+            getFilterParameter(value);
+
             var list = [];
             var initial_Ytranslate = 0.5198514710082833;
             _this.data.forEach(function(d, i){
@@ -596,10 +628,10 @@ var enterLog = function(value){
                 if(valid && value.bot != null && label != 'Botnet') valid = false;
                 if(valid && value.notBot != null && label != 'Normal') valid = false;
                 //if(valid && value.all)
-                if(valid && value.initialIp != null && value.initialIp != attributes[0]) valid = false;
-                if(valid && value.endIp != null && value.endIp != attributes[1]) valid = false;
-                if(valid && value.port != null && value.port != attributes[2]) valid = false;
-                if(valid && value.protocol != null && value.protocol != attributes[3]) valid = false;
+                if(valid && value.initialIp.length > 0 && value.initialIp.indexOf(attributes[0]) == -1) valid = false;
+                if(valid && value.endIp.length > 0 && value.endIp.indexOf(attributes[1]) == -1) valid = false;
+                if(valid && value.port.length > 0 && value.port.indexOf(attributes[2]) == -1) valid = false;
+                if(valid && value.protocol.length > 0 && value.protocol.indexOf(attributes[3]) == -1) valid = false;
 
                 if(valid){
                     list.push(d.id);

@@ -568,7 +568,7 @@ Document Panel (right) - for visualizing highlighted text
     /*display: inline-flex;
     width: 100%;*/
     align-items: flex-start;
-    padding: .2em 0em;
+    /*padding: .2em 0em;*/
 }
 
 .urank-docviewer-details-section div label {
@@ -732,6 +732,13 @@ label.urank-docviewer-attributes{
     width: 25%;
 }
 
+.doc-label-container{
+    color: #ffffff;
+    height: 20px;
+    border-radius: 5px;
+    width: 25%;
+}
+
 #doc-label-containe label{
     margin: 5px;font-size: .95em;
 }
@@ -771,6 +778,15 @@ div.urank-docviewer-divisor{
     margin-top: 4px;
     /*padding-top: -18px;*/
 }
+
+.urank-docviewer-details-label{
+    padding: 4px;
+    border-radius: 10px;
+    padding-bottom: 8px;
+    margin-top: 4px;
+}
+
+
 
 .doc-word{
     font-weight: bold;

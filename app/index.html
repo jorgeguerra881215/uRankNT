@@ -45,6 +45,8 @@
                 SM => Size Medium </br>
                 SL => Size Large </br>
             </p>
+        </div><div id="dialog-seguence" title="Connection Sequence">
+            <p></p>
         </div>
         <div class="main-panel">
             <div class="tagCloud-control-panel" style="display: none">
@@ -61,7 +63,7 @@
                 <div id="slider-length"></div>-->
             </div>
 
-            <div id="tagcloud-container">
+            <!--<div id="tagcloud-container">
                 <div id="tagCloud-controlPanel" class="ranking-controls">
                     <div id="tagCloud-slideControl">
                         <label class="label-slider" for="lengthValue">Length of sequences:</label>
@@ -80,7 +82,7 @@
                 <div id="tagcloud">
 
                 </div>
-            </div>
+            </div>-->
                    <!-- left panel -->
 
             <div class="central-panel">     <!-- central panel, including list and ranking -->
@@ -153,7 +155,7 @@
                 </div>
 
                 <div class="vis-panel">
-                    <div id="contentlist" ></div>
+                    <div id="contentlist"></div>
                     <div id="viscanvas"></div>
                 </div>
             </div>
@@ -229,10 +231,26 @@
                         duration: 100
                     }
                 });
-
+                $( "#dialog-seguence" ).dialog({
+                    autoOpen: false,
+                    show: {
+                        effect: "blind",
+                        duration: 100
+                    },
+                    hide: {
+                        effect: "blind",
+                        duration: 100
+                    }
+                });
                 $( "#btn-show-legend" ).on( "click", function() {
                     $( "#dialog" ).dialog( "open" );
                 });
+                /*$("#btn-test").on( "click", function() {
+                    console.log('entro');
+                    var connection = $(this).attr('sequence');
+                    $("#dialog-seguence").html('<p>'+connection+'</p>');
+                    $("#dialog-seguence").dialog( "open" );
+                });*/
             } );
         </script>
 

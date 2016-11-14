@@ -40,6 +40,7 @@ var DocViewer = (function(){
     var _document,_keywords,_colorScale = '';
     var _list  = new ContentList();
     var _selectedKeywords = [];
+    var counter = 0;
     //var fs = require("fs");
 
     function DocViewer(arguments) {
@@ -96,12 +97,13 @@ var DocViewer = (function(){
      * Created by Jorch
      * Labeling connections like Botnet
      */
-    var saveBotnetLabel = function saveLabelBton(event){
+    var saveBotnetLabel = function saveLabelBton(event,document_id){
+        var documentId = document_id != null ? document_id : _document.id;
         $('#label-text').val("Botnet");
         //changing a color
-        $("[urank-span-id='"+_document.id+"']").removeClass('yellow-circle');
-        $("[urank-span-id='"+_document.id+"']").removeClass('green-circle');
-        $("[urank-span-id='"+_document.id+"']").addClass('red-circle');
+        $("[urank-span-id='"+documentId+"']").removeClass('yellow-circle');
+        $("[urank-span-id='"+documentId+"']").removeClass('green-circle');
+        $("[urank-span-id='"+documentId+"']").addClass('red-circle');
         keepElementFocus();
         saveLabel(event);
 
@@ -111,13 +113,14 @@ var DocViewer = (function(){
      * Created by Jorch
      * Labeling connections like Normal
      */
-    var saveNormalLabel = function saveLabelBton(event){
+    var saveNormalLabel = function saveLabelBton(event,document_id){
+        var documentId = document_id != null ? document_id : _document.id;
         $('#label-text').val("Normal");
         //changing a color
 
-        $("[urank-span-id='"+_document.id+"']").removeClass('yellow-circle');
-        $("[urank-span-id='"+_document.id+"']").removeClass('red-circle');
-        $("[urank-span-id='"+_document.id+"']").addClass('green-circle');
+        $("[urank-span-id='"+documentId+"']").removeClass('yellow-circle');
+        $("[urank-span-id='"+documentId+"']").removeClass('red-circle');
+        $("[urank-span-id='"+documentId+"']").addClass('green-circle');
         keepElementFocus();
         saveLabel(event);
     }
@@ -142,6 +145,98 @@ var DocViewer = (function(){
             $ul.addClass(ulPaddingBottomclass);
         }
         _this.multipleHighlightMode = false;
+    };
+
+    var build_connection_viewer = function(){
+        this.opt = opt.misc;
+
+        var containerClasses = (this.opt.defaultBlockStyle) ? docViewerContainerClass +' '+ defaultDocViewerContainerClass : docViewerContainerClass;
+        $root = $('<div></div>');//$(s.root).empty().addClass(containerClasses);
+
+        // Append details section, label and connection details
+        $detailsSection = $("<div id='doc-viewer-detail' style='display: none' class='" + detailsSectionClass + "'></div>").appendTo($root);
+        var $infoSection = $("<div id='doc-viewer-info'></div>").appendTo($detailsSection);
+
+        //user section
+        var $userSection = $('<div id="doc-user-section"></div>').appendTo($infoSection);
+        $("<div id='doc-user-section-logo'></div>").appendTo($userSection);
+
+        //Label section
+        var $labelContainer = $('<div id="doc-label-section"></div>').appendTo($infoSection);
+        $("<div id='doc-label-container'><label id='urank-docviewer-details-label' class='urank-docviewer-attributes'></label></div>").appendTo($labelContainer);
+        $('<div id="doc-word-container"></div>').appendTo($infoSection);
+        //$("<div id='urank-docviewer-details-title'></div>").appendTo($titleContainer);
+        //$("<label id='urank-docviewer-details-label' class='urank-docviewer-attributes'></label>").appendTo($labelContainer);
+        $("<div style='clear: both'></div>").appendTo($infoSection);
+
+        /**
+         * Modified by Jorch
+         */
+        //Section to show connection info
+        var $titleContainer = $('<div class="doc-attributes-sontainer"></div>').appendTo($infoSection);
+        $("<input type='checkbox' id='filter-initial-port' name='connection-attribute' value='initial-ip'><label>Ip Origin:</label>").appendTo($titleContainer);
+        $("<label id='urank-docviewer-details-initport' class='urank-docviewer-attributes'></label>").appendTo($titleContainer);
+        var $titleContainer = $('<div class="doc-attributes-sontainer"></div>').appendTo($infoSection);
+        $("<input type='checkbox' id='filter-end-port' name='connection-attribute' value='end-ip'><label>Ip Dest:</label>").appendTo($titleContainer);
+        $("<label id='urank-docviewer-details-destport' class='urank-docviewer-attributes'></label>").appendTo($titleContainer);
+        var $titleContainer = $('<div class="doc-attributes-sontainer"></div>').appendTo($infoSection);
+        $("<input type='checkbox' id='filter-port' name='connection-attribute' value='port'><label>Port:</label>").appendTo($titleContainer);
+        $("<label id='urank-docviewer-details-port' class='urank-docviewer-attributes'></label>").appendTo($titleContainer);
+        var $titleContainer = $('<div class="doc-attributes-sontainer"></div>').appendTo($infoSection);
+        $("<input type='checkbox' id='filter-protocol' name='connection-attribute' value='protocol'><label>Protocol:</label>").appendTo($titleContainer);
+        $("<label id='urank-docviewer-details-protocol' class='urank-docviewer-attributes'></label>").appendTo($titleContainer);
+
+        //Dividing section
+        $("<div class='urank-docviewer-divisor'></div>").appendTo($infoSection);
+
+        var $titleContainer = $('<div></div>').appendTo($detailsSection);
+        $("<div id='urank-docviewer-labeling'>" +
+            "<input type='text' placeholder='Add new label...' id='label-text' style='display: none'>" +
+            "<label>Tell us why you select this label:</label>"+
+            "<textarea id='urank-docviewer-labeling-text' rows='5'></textarea>"+
+            "<button id='urank-label-button-botnet'>Botnet</button>" +
+            "<button id='urank-label-button-normal' style='float: right'>Normal</button>" +
+            "</div>").appendTo($titleContainer);
+        $('#urank-label-button-botnet').click(saveBotnetLabel);
+        $('#urank-label-button-normal').click(saveNormalLabel);
+        $('#urank-docviewer-labeling-text').click(keepElementFocus);
+
+        //Dividing section
+        $("<div class='urank-docviewer-divisor'></div>").appendTo($titleContainer);
+
+        $('input[type=checkbox][name=connection-attribute]').change(function() {
+            urank.findNotLabeled(this.value,this.filter);
+
+        });
+
+        this.opt.facetsToShow.forEach(function(facetName){
+            var $facetContainer = $('<div></div>').appendTo($detailsSection);
+            $("<label>" + facetName.capitalizeFirstLetter() + ":</label>").appendTo($facetContainer);
+            $("<span id='urank-docviewer-details-" + facetName + "'></span>").appendTo($facetContainer);
+        });
+
+        // Append content section for snippet placeholder
+        //var $contentSectionOuter = $('<div style="height: 200px"></div>').appendTo($root).addClass(contentSectionOuterClass);
+        $contentSection = $('<div id="tabs" style="height: 160px; display: none"></div>').appendTo($root).addClass(contentSectionOuterClass); //$('<div></div>').appendTo($contentSectionOuter).addClass(contentSectionClass);
+
+        $('<ul><li><a href="#tabs-1">Letter</a></li><li><a href="#tabs-2">Connection Sequence</a></li></ul>').appendTo($contentSection);
+        var $contentTab1 = $('<div id="tabs-1"></div>').appendTo($contentSection);
+        var $p = $('<p id="contentTabs-1"></p>').appendTo($contentTab1);
+        var $contentTab2 = $('<div id="tabs-2"></div>').appendTo($contentSection);
+        $('<p id="contentTabs-2"></p>').appendTo($contentTab2);
+        $( "#tabs" ).tabs();
+
+        //$('<p></p>').appendTo($contentSection);
+
+        //Statistic section
+        var $statisticSection = $("<div id='doc-viewer-statistic'></div>").appendTo($root);
+        $("<div id='doc-viewer-top'></div>").appendTo($statisticSection);
+        $("<div id='doc-viewer-left'></div>").appendTo($statisticSection);
+
+
+        $root.on('mousedown', function(event){ event.stopPropagation(); });
+
+        return $root;
     };
 
     var _build = function(opt) {
@@ -241,6 +336,7 @@ var DocViewer = (function(){
 
 
     };
+
 
 
 
@@ -418,7 +514,96 @@ var DocViewer = (function(){
 
         //Saving logs register
         urank.enterLog('Connection - '+ _document.id);
+
+        /**
+         * Showing the list of connections
+         */
+        //Filter
+        var connection_list = show_list_document(document, init_port, dest_port, port, protocol,sequence,letter_data,periodic_data,counter);
+
+
+        $('#viscanvas > div.urank-hidden-scrollbar-inner > div').append(connection_list);
+        $(".btn-show-connection-sequence").on( "click", function() {
+            var connection = $(this).attr('sequence');
+            $("#dialog-seguence").html('<p>'+connection+'</p>');
+            $("#dialog-seguence").dialog( "open" );
+         });
+        $('input[type=checkbox][name=connection-attribute]').change(function() {
+            console.log('filtrando');
+            urank.findNotLabeled(this.value,this.filter);
+        });
+        _showBarChart('bar-graph-'+document.id,letter_data);
+        _showPieChart('pie-graph-'+document.id,periodic_data);
+
+        counter ++;
     };
+
+    var show_list_document = function (document, init_port, dest_port, port, protocol, sequence, letter_data, periodic_data,counter){
+        var title = document.title;
+        var opacity_botnet_class = document.title == "Botnet" ? "opacity" : "non-opacity";
+        var opacity_normal_class = document.title == "Normal" ? "opacity" : "non-opacity";
+        var element =
+            '<div class="urank-docviewer-container-default" style="margin-top: -3px">' +
+                '<div style="display: block;" class="urank-docviewer-details-section">' +
+                    '<div>' +
+                        '<div class="left" style="margin-right: 25px; margin-top: 6px">' +
+                            '<div class="doc-label-container">' +
+                                '<label class="urank-docviewer-attributes urank-docviewer-details-label '+title.toLowerCase()+'">'+title+'</label>' +
+                            '</div>' +
+                        '</div>' +
+                        '<div class="doc-attributes-sontainer left">' +
+                        '<input type="checkbox" id="filter-initial-port-'+counter+'" class="filter-initial-port" name="connection-attribute" value="'+init_port+'"><label>Ip Origin:</label><label id="urank-docviewer-details-initport" class="urank-docviewer-attributes">'+init_port+'</label>' +
+                        '</div>' +
+                        '<div class="doc-attributes-sontainer left">' +
+                        '<input type="checkbox" id="filter-end-port-'+counter+'" class="filter-end-port" name="connection-attribute" value="'+dest_port+'"><label>Ip Dest:</label><label id="urank-docviewer-details-destport" class="urank-docviewer-attributes">'+dest_port+'</label>' +
+                        '</div>' +
+                        '<div class="doc-attributes-sontainer left">' +
+                        '<input type="checkbox" id="filter-port-'+counter+'" class="filter-port" name="connection-attribute" value="'+port+'"><label>Port:</label><label id="urank-docviewer-details-port" class="urank-docviewer-attributes">'+port+'</label>' +
+                        '</div>' +
+                        '<div class="doc-attributes-sontainer left">' +
+                        '<input type="checkbox" id="filter-protocol-'+counter+'" class="filter-protocol" name="connection-attribute" value="'+protocol+'"><label>Protocol:</label><label id="urank-docviewer-details-protocol" class="urank-docviewer-attributes">'+protocol+'</label>' +
+                        '</div>' +
+                        '<div style="clear: both"></div>' +
+
+                        /*'<div class="urank-docviewer-divisor"></div>' +*/
+                    '</div>' +
+                    '<div style=" margin-bottom: -30px">' +
+                        '<div id="bar-graph-'+document.id+'" class="left">' +
+                        '</div>' +
+                        '<div id="pie-graph-'+document.id+'" class="left">' +
+                        '</div>' +
+                        '<div style="clear: both"></div>' +
+                    '</div>' +
+                    '<div>' +
+                        '<div>' +
+                            /*'<input type="text" placeholder="Add new label..." id="label-text" style="display: none"><label>Tell us why you select this label:</label><textarea id="urank-docviewer-labeling-text" rows="5"></textarea>' +*/
+                            '<button class="btn-show-connection-sequence left" sequence="'+sequence+'" style="margin 2px">Sequence</button>'+
+                            '<button id="urank-label-button-botnet-'+document.id+'" class="rigth '+opacity_botnet_class+'" disabled="" style="margin: 2px">Botnet</button>' +
+                            '<button id="urank-label-button-normal-'+document.id+'" class="rigth '+opacity_normal_class+'" style="margin: 2px">Normal</button>' +
+                            '<div style="clear: both"></div>'+
+                        '</div>' +
+                        /*'<div class="urank-docviewer-divisor"></div>' +*/
+                    '</div>' +
+                '</div>' +
+                /*'<div style="height: 160px; display: block;" class="urank-docviewer-content-section-outer ui-tabs ui-widget ui-widget-content ui-corner-all">' +
+                    *//*'<ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" role="tablist">' +
+                        '<li class="ui-state-default ui-corner-top ui-tabs-active ui-state-active" role="tab" tabindex="0" aria-controls="tabs-1" aria-labelledby="ui-id-2" aria-selected="true" aria-expanded="true">' +
+                            '<a href="#tabs-1" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-2">Letter</a>' +
+                        '</li>' +
+                        '<li class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="tabs-2" aria-labelledby="ui-id-3" aria-selected="false" aria-expanded="false">' +
+                            '<a href="#tabs-2" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-3">Connection Sequence</a>' +
+                        '</li>' +
+                    '</ul>' +
+                    '<div aria-labelledby="ui-id-2" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-hidden="false">' +
+                        '<p></p>' +
+                    '</div>' +*//*
+                    *//*'<div aria-labelledby="ui-id-3" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-hidden="true" style="display: none;">' +
+                        '<p>'+sequence+'</p>' +
+                    '</div>' +*//*
+                '</div>' +*/
+            '</div>';
+        return element;
+    }
 
     /**
      * Created by Jorch

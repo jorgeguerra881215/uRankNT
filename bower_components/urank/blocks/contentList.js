@@ -571,7 +571,7 @@ var ContentList = (function(){
             // ranking section
             var $rankingDiv = $("<div></div>").appendTo($li).addClass(liRankingContainerClass).css('visibility', 'hidden');
             $("<div></div>").appendTo($rankingDiv).addClass(rankingPosClass);
-            $("<div></div>").appendTo($rankingDiv).addClass(rankingPosMovedClass);
+            $("<div></div>").appendTo($rankingDiv).addClass(rankingPosMovedClass)
 
             /**
              * Modified by Jorch

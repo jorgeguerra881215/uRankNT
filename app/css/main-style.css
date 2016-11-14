@@ -192,7 +192,7 @@ header select, header input[type="button"]{
 
 .central-panel {
     display: inline-block;
-    width: 61%;
+    width: 100%;
     height: 100%;
 }
 
@@ -342,6 +342,21 @@ header select, header input[type="button"]{
 /************************************************************************************************************
 * Jorch style
 *************************************************************************************************************/
+div.left{
+    float: left;
+}
+
+div.rigth{
+    float: right;
+}
+
+.opacity{
+    opacity: 0.5;
+}
+.non-opacity{
+    opacity: 1;
+}
+
 .tagCloud-control-panel{
     height: calc(100% - 25px);
     min-height: 4.5em;
