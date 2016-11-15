@@ -736,7 +736,7 @@ label.urank-docviewer-attributes{
     color: #ffffff;
     height: 20px;
     border-radius: 5px;
-    width: 25%;
+    /*width: 25%;*/
 }
 
 #doc-label-containe label{

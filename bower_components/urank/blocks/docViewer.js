@@ -515,6 +515,7 @@ var DocViewer = (function(){
         //Saving logs register
         urank.enterLog('Connection - '+ _document.id);
 
+
         /**
          * Showing the list of connections
          */
@@ -542,13 +543,14 @@ var DocViewer = (function(){
         var title = document.title;
         var opacity_botnet_class = document.title == "Botnet" ? "opacity" : "non-opacity";
         var opacity_normal_class = document.title == "Normal" ? "opacity" : "non-opacity";
+        var index = $('label#label-'+document.id).attr('value');
         var element =
             '<div class="urank-docviewer-container-default" style="margin-top: -3px">' +
                 '<div style="display: block;" class="urank-docviewer-details-section">' +
                     '<div>' +
                         '<div class="left" style="margin-right: 25px; margin-top: 6px">' +
                             '<div class="doc-label-container">' +
-                                '<label class="urank-docviewer-attributes urank-docviewer-details-label '+title.toLowerCase()+'">'+title+'</label>' +
+                                '<label class="urank-docviewer-attributes urank-docviewer-details-label '+title.toLowerCase()+'">'+index+' | '+title+'</label>' +
                             '</div>' +
                         '</div>' +
                         '<div class="doc-attributes-sontainer left">' +
