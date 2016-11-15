@@ -4,7 +4,8 @@ window.TAG_CATEGORIES = 5;
 //  String Constants
 window.STR_NO_VIS = "No visualization yet!";
 window.STR_DROPPED = "Dropped!";
-window.STR_DROP_TAGS_HERE = "Drop tags here!";
+//window.STR_DROP_TAGS_HERE = "Drop tags here!";
+window.STR_DROP_TAGS_HERE = "Select connections to compare!";
 window.STR_JUST_RANKED = "new";
 window.STR_SEARCHING = "Searching...";
 window.STR_UNDEFINED = 'undefined';

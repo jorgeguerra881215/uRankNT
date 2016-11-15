@@ -322,7 +322,7 @@ var DocViewer = (function(){
         //$('<p></p>').appendTo($contentSection);
 
         //Statistic section
-        var $statisticSection = $("<div id='doc-viewer-statistic'></div>").appendTo($root);
+        var $statisticSection = $("<div id='doc-viewer-statistic' style='display: none'></div>").appendTo($root);
         $("<div id='doc-viewer-top'></div>").appendTo($statisticSection);
         $("<div id='doc-viewer-left'></div>").appendTo($statisticSection);
 
@@ -353,7 +353,7 @@ var DocViewer = (function(){
         _document = document;
         _keywords = keywords;
         _colorScale = colorScale;
-        $('#doc-viewer-detail').css('display','block');
+        //$('#doc-viewer-detail').css('display','block');
         var port_info = document.connection_id.split("-");
         var init_port = port_info[0];
         var dest_port = port_info[1];
@@ -505,7 +505,7 @@ var DocViewer = (function(){
             }
             sequence += words[i][0];
         }
-        $( "#tabs" ).css('display','block');
+        //$( "#tabs" ).css('display','block');
         $('#contentTabs-1').html(getStyleWordSecuencie(document.description, keywords, colorScale));
         $('#contentTabs-2').html(sequence);
 
