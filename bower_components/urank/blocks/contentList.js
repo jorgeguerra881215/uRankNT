@@ -566,8 +566,23 @@ var ContentList = (function(){
 
         $ul = $('<ul></ul>').appendTo($scrollable).addClass(ulClass +' '+ ulClassDefault);
         _this.data.forEach(function(d, i){
+            var cluster = d.cluster;
+            var cluster_class = '';
+            switch (cluster){
+                case '1':
+                    cluster_class = 'c-uno';
+                    break;
+                case '2':
+                    cluster_class = 'c-dos';
+                    break;
+                case '3':
+                    cluster_class = 'c-tres';
+                    break;
+            }
+
             // li element
-            var $li = $('<li></li>', { 'urank-id': d.id }).appendTo($ul).addClass(liClass +' '+ liClassDefault);
+            var $li = $('<li></li>', { 'urank-id': d.id }).appendTo($ul).addClass(liClass +' '+ liClassDefault + ' ' + cluster_class);
+            //var $li = $('<li></li>', { 'urank-id': d.id }).appendTo($ul).addClass(liClass +' '+ liClassDefault);
             // ranking section
             var $rankingDiv = $("<div></div>").appendTo($li).addClass(liRankingContainerClass).css('visibility', 'hidden');
             $("<div></div>").appendTo($rankingDiv).addClass(rankingPosClass);
