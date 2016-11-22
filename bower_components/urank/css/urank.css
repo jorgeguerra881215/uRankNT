@@ -513,6 +513,10 @@ label.characteristic{
     background: #D8CEC4;
     border: 1px solid aliceblue;
 }
+
+.selected{
+    border: 5px solid gray;
+}
 /*****************************************************************************************************************
 
 Canvas section (right-center) - displays ranking vis

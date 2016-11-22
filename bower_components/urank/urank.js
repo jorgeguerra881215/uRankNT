@@ -276,7 +276,27 @@ var enterLog = function(value){
         return result;
     }
 
-
+    var sortBySimilarityToTheEnterConnection = function(data,connection){
+        var documentReference = null;
+        var letterSequences = getLetterSequences(connection.description);
+        var characteristicVector = calculateCharacteristicVector(letterSequences);
+        documentReference = characteristicVector;
+        var conexionSimilarity = {};
+        var result = [];
+        data.forEach(function(item){
+            var letterSequences = getLetterSequences(item.description);
+            var characteristicVector = calculateCharacteristicVector(letterSequences);
+            item.letterSequence = letterSequences;
+            item.characteristicVector = characteristicVector;
+            //var diference = vectorDistance(documentReference, characteristicVector);
+            var diference = cosineSimilarity(documentReference, characteristicVector);
+            conexionSimilarity[diference] = item;
+        });
+        Object.keys(conexionSimilarity).sort(function(a,b){return b-a}).forEach(function(key,i){
+            result.push(conexionSimilarity[key]);
+        });
+        return result;
+    }
 
     var processingData = function(data){
         var clusters = getCluster(data);
@@ -285,6 +305,14 @@ var enterLog = function(value){
         var cluster3 = sortBySimilarityToTheFirstConnection(clusters[3]);//clusters[3];
         return cluster1.concat(cluster2).concat(cluster3);
         //return sortBySimilarityToTheFirstConnection(data);
+    }
+
+    var getDataOrdered = function(data,connection){
+        var clusters = getCluster(data);
+        var cluster1 = sortBySimilarityToTheEnterConnection(clusters[1],connection);
+        var cluster2 = sortBySimilarityToTheEnterConnection(clusters[2],connection);
+        var cluster3 = sortBySimilarityToTheEnterConnection(clusters[3],connection);
+        return cluster1.concat(cluster2).concat(cluster3);
     }
 
     var enterText = function(value){
@@ -506,9 +534,14 @@ var enterLog = function(value){
             _this.selectedId = _this.selectedId === documentId ? STR_UNDEFINED : documentId;
 
             if(_this.selectedId !== STR_UNDEFINED) {    // select
+
+                var connection = _this.rankingModel.getDocumentById(documentId);
+                /*var new_list = getDataOrdered(_this.data,connection);
+                contentList.update(new_list, status, _this.selectedKeywords, _this.queryTermColorScale);*/
+
                 contentList.selectListItem(documentId);
                 visCanvas.selectItem(documentId);
-                docViewer.showDocument(_this.rankingModel.getDocumentById(documentId), _this.selectedKeywords.map(function(k){return k.stem}), _this.queryTermColorScale);
+                docViewer.showDocument(connection, _this.selectedKeywords.map(function(k){return k.stem}), _this.queryTermColorScale);
             }
             else {                   // deselect
                 contentList.deselectAllListItems();
