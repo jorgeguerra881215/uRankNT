@@ -443,7 +443,7 @@ var DocViewer = (function(){
             $(".btn-close-connection").on( "click", function() {
                 var btn = $(this);//$('#'+id);
                 var id_connection = btn.attr('idC');
-                $('#urank-docviewer-'+id_connection).css('display','none');
+                $('#urank-docviewer-'+id_connection).replaceWith('');//css('display','none');
                 var index = _selectedConnection.indexOf(id_connection)
                 if(index != -1){
                     _selectedConnection.splice(index,1);
