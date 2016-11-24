@@ -417,6 +417,9 @@ var ContentList = (function(){
         //var colors = ['#ffefd8','#ffe7c4','#ffdfb1','#ffd89d','#ffd089','#ffc876','#ffc062','#ffb84f','#ffb03b','#ffa827','#ffa014','#ff9800','#ec8d00','#d88100','#c47500','#b16900','#9d5e00','#895200','#623b00','#3b2300']
         //var colors = ['#00008F','#0000BF','#0000EF','#001FFF','#005FFF','#008FFF','#00BFFF','#00EFFF','#2FFFCF','#5FFF9F','#AFFF4F','#DFFF1F','#FFDF00','#FFAF00','#FF7F00','#FF4F00','#FF0F00','#DF0000','#AF0000','#7F0000']
         var colors = ['#ffffff','#f9f1f1','#fbefef','#fdeded','#ffebeb','#ffd8d8','#ffc4c4','#ffb1b1','#ff9d9d','#ff8989','#ff7676','#ff6262','#ff4e4e','#ff3b3b','#ff2727','#ff1414','#ff1010','#ff0505','#ff1001','#ff0000']//'#e21d1d','#eb1414','#f50a0a','#ff0000']
+        var periodicity_color = ['#ffffff','#fff8eb','#ffeac4','#ffdc9d','#ffd589','#ffc862','#ffc14e','#ffba3b','#ffb327','#ffac14'];
+        var duration_color = ['#ffffff','','','','','','','','',''];
+        var size_color = ['#ffffff','','','','','','','','',''];
 
         var ranges = 101 / (colors.length);
         //Count periodicity feature
