@@ -558,13 +558,13 @@ var ContentList = (function(){
 
     }
 
-    var buildDefaultList = function() {
+    var buildDefaultList = function(index_flag) {
         $root.empty().addClass(hiddenScrollbarClass);
         $scrollable = $('<div></div>').appendTo($root)
             .addClass(hiddenScrollbarInnerClass)
             .on('scroll', onScroll);
 
-        $ul = $('<ul></ul>').appendTo($scrollable).addClass(ulClass +' '+ ulClassDefault);
+        $ul = $('<ul id="connection-list"></ul>').appendTo($scrollable).addClass(ulClass +' '+ ulClassDefault);
         _this.data.forEach(function(d, i){
             var cluster = d.cluster;
             var cluster_class = '';
@@ -581,7 +581,8 @@ var ContentList = (function(){
             }
 
             // li element
-            var $li = $('<li></li>', { 'urank-id': d.id }).appendTo($ul).addClass(liClass +' '+ liClassDefault + ' ' + cluster_class);
+            var $li = $('<li></li>', { 'urank-id': d.id, 'listIndex':i+1 }).appendTo($ul).addClass(liClass +' '+ liClassDefault + ' ' + cluster_class);
+            //var $li = $('<li listIndex="'+(i+1)+'"></li>', { 'urank-id': d.id }).appendTo($ul).addClass(liClass +' '+ liClassDefault + ' ' + cluster_class);
             //var $li = $('<li></li>', { 'urank-id': d.id }).appendTo($ul).addClass(liClass +' '+ liClassDefault);
             // ranking section
             var $rankingDiv = $("<div></div>").appendTo($li).addClass(liRankingContainerClass).css('visibility', 'hidden');
@@ -602,9 +603,18 @@ var ContentList = (function(){
             // title section
             var $titleDiv = $("<div></div>").appendTo($li).addClass(liTitleContainerClass);
             var html = createVisualRepresentation(d);//&nbsp;
-
-            var index = i+1 < 10 ? (i+1)+'-&nbsp;&nbsp;' : (i+1)+'-';
-            var value = i+1;
+            var index = 0;
+            var value = 0;
+            if(typeof index_flag === 'undefined'){
+                index = i+1 < 10 ? (i+1)+'-&nbsp;&nbsp;' : (i+1)+'-';
+                value = i+1;
+                d.viewIndex = i+1;
+            }
+            else{
+                var new_index = d.viewIndex;
+                index = new_index < 10 ? new_index+'-&nbsp;&nbsp;' : new_index+'-';//$('label#label-'+d.id).attr('value');
+                value = new_index;
+            }
             //var index = i+1 < 10 ? (i+1)+'-&nbsp;&nbsp;C'+ d.cluster : (i+1)+'-'+ d.cluster;
             var list_element_container = $('<div><div style="float: left; width: 25%">'+ligth_circle+'<label value="'+value+'" id="label-'+ d.id+'">'+index+'</label></div></div>', { id: 'urank-list-li-title-' + i, class: liTitleClass +' '+ liTitleClassDefault, html: html, title: d.title + '\n' + d.description }).appendTo($titleDiv);
             var visual_representation = $('<div style="float: left; width: 75%"></div>').appendTo(list_element_container);
@@ -644,7 +654,7 @@ var ContentList = (function(){
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //  Prototype methods
 
-    var _build = function(data, opt) {
+    var _build = function(data, opt,index_flag) {
         this.originalData = data.slice();
         this.data = data.slice();
         this.selectedKeywords = [];
@@ -655,7 +665,7 @@ var ContentList = (function(){
         if(opt != null && this.opt.custom)
             buildCustomList();
         else
-            buildDefaultList();
+            buildDefaultList(index_flag);
 
         formatTitles();
         updateLiBackground();
@@ -863,6 +873,51 @@ var ContentList = (function(){
         return $ul.height();
     };
 
+    /*var _orderedList = function(data){
+        *//*var ul = $('ul#connection-list');
+        var li_s = $('ul#connection-list li');
+        var dict_li = {}
+        for(var i =0; i < li_s.length; i++){
+            var key = li_s[i].attributes['index'].value;
+            dict_li[key] = li_s[i];
+            //ul.remove(li_s[i]);
+        }
+        ul.html('');*//*
+        data.forEach(function(item,i){
+            var connection_index = item.viewIndex;
+            var aux = connection_index -1;
+            //var new_li = dict_li[connection_index];
+            while(aux > i){
+                aux --;
+                $("ul#connection-list li:eq("+aux+")").before($("ul#connection-list li:eq("+(aux+1)+")"));
+            }
+            //ul.append(new_li);
+        });
+    }*/
+
+    var _orderedList = function(data){
+        var ul = $('ul#connection-list');
+         var li_s = $('ul#connection-list li');
+         var dict_li = {}
+         for(var i =0; i < li_s.length; i++){
+            var key = li_s[i].attributes['listindex'].value;
+            dict_li[key] = li_s[i];
+            //ul.remove(li_s[i]);
+         }
+         ul.html('');
+        data.forEach(function(item,i){
+            var connection_index = item.viewIndex;
+            var new_li = dict_li[connection_index];
+            ul.append(new_li);
+        });
+        $('ul#connection-list li').each(function(item){
+            var li = $(this);
+            var id = li.attr('urank-id');
+            bindEventHandlers(li, id);
+        })
+        $('ul#connection-list li').removeClass('hovered');
+    }
+
 
     // Prototype
     ContentList.prototype = {
@@ -881,7 +936,8 @@ var ContentList = (function(){
         clearEffects: _clearEffects,
         destroy: _destroy,
         scrollTo: _scrollTo,
-        getListHeight: _getListHeight
+        getListHeight: _getListHeight,
+        orderedList: _orderedList
     };
 
     return ContentList;

@@ -537,8 +537,9 @@ var enterLog = function(value){
 
                 var connection = _this.rankingModel.getDocumentById(documentId);
                 var new_list = getDataOrdered(_this.data,connection);
-                var status = RANKING_STATUS.update;//_this.rankingModel.getStatus();
-                contentList.update(new_list, status, _this.selectedKeywords, _this.queryTermColorScale);
+                contentList.orderedList(new_list);
+                //contentList.build(new_list, null,true);
+                //contentList.update(new_list, status, _this.selectedKeywords, _this.queryTermColorScale);
 
                 contentList.selectListItem(documentId);
                 visCanvas.selectItem(documentId);
