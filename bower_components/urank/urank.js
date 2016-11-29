@@ -69,7 +69,7 @@ var Urank = (function(){
                 misc: {
                     hideScrollbar: false
                 }
-            },
+            }
         },
         visCanvas : {
             module: 'ranking',
@@ -95,7 +95,7 @@ var Urank = (function(){
         },
         misc: {
             tagColorArray: tagColorRange,
-            queryTermColorArray: queryTermColorRange,
+            queryTermColorArray: queryTermColorRange
         }
     };
 
@@ -279,8 +279,8 @@ var enterLog = function(value){
     var sortBySimilarityToTheEnterConnection = function(data,connection){
         var documentReference = null;
         var letterSequences = getLetterSequences(connection.description);
-        var characteristicVector = calculateCharacteristicVector(letterSequences);
-        documentReference = characteristicVector;
+        //var characteristicVector = calculateCharacteristicVector(letterSequences);
+        documentReference = calculateCharacteristicVector(letterSequences);
         var conexionSimilarity = {};
         var result = [];
         data.forEach(function(item){
@@ -309,9 +309,28 @@ var enterLog = function(value){
 
     var getDataOrdered = function(data,connection){
         var clusters = getCluster(data);
-        var cluster1 = sortBySimilarityToTheEnterConnection(clusters[1],connection);
-        var cluster2 = sortBySimilarityToTheEnterConnection(clusters[2],connection);
-        var cluster3 = sortBySimilarityToTheEnterConnection(clusters[3],connection);
+        var cluster1 = [];
+        var cluster2 = [];
+        var cluster3 = [];
+
+        switch(connection.cluster){
+            case '1':
+                cluster1 = sortBySimilarityToTheEnterConnection(clusters[1],connection);
+                cluster2 = sortBySimilarityToTheFirstConnection(clusters[2]);
+                cluster3 = sortBySimilarityToTheFirstConnection(clusters[3]);
+                break;
+            case '2':
+                cluster1 = sortBySimilarityToTheFirstConnection(clusters[1]);
+                cluster2 = sortBySimilarityToTheEnterConnection(clusters[2],connection);
+                cluster3 = sortBySimilarityToTheFirstConnection(clusters[3]);
+                break;
+            case '3':
+                cluster1 = sortBySimilarityToTheFirstConnection(clusters[1]);
+                cluster2 = sortBySimilarityToTheFirstConnection(clusters[2]);
+                cluster3 = sortBySimilarityToTheEnterConnection(clusters[3],connection);
+                break;
+        }
+
         return cluster1.concat(cluster2).concat(cluster3);
     }
 
