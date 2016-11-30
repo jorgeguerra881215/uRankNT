@@ -10,6 +10,7 @@ var Urank = (function(){
     queryTermColorRange.splice(queryTermColorRange.indexOf("#ffff33"), 1, "#ffd700");
 
     var connectionList = [];
+    var connection_id = [];
 
     //   defaults
     var defaultInitOptions = {
@@ -338,9 +339,10 @@ var enterLog = function(value){
 
     var climbUpConnection = function(data, connection){
         connectionList.push(connection);
+        connection_id.push(connection.id);
         var aux = [];
         data.forEach(function(item){
-            item.id != connection.id ? aux.push(item) : null;
+            item.id != connection.id && connection_id.indexOf(item.id) == -1 ? aux.push(item) : null;
         });
 
         return connectionList.concat(aux);
@@ -570,8 +572,9 @@ var enterLog = function(value){
                 //var new_list = getDataOrdered(_this.data,connection);
                 var new_list = climbUpConnection(_this.data,connection);
                 contentList.orderedList(new_list);
-
-                contentList.selectListItem(documentId);
+                contentList.selectMultipleListItem(connection_id);
+                
+                //contentList.selectListItem(documentId);
                 visCanvas.selectItem(documentId);
                 docViewer.showDocument(connection, _this.selectedKeywords.map(function(k){return k.stem}), _this.queryTermColorScale);
             }

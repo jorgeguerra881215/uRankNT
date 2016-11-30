@@ -762,6 +762,15 @@ var ContentList = (function(){
         $('.'+liClass+'['+urankIdAttr+'="'+id+'"]').css("opacity", "1");
     };
 
+    var _selectMultipleListItem = function(connection_id) {
+        stopAnimation();
+        $('.'+liClass).css("opacity", "0.3");
+        for(var i =0; i < connection_id.length; i++){
+            var id = connection_id[i];
+            $('.'+liClass+'['+urankIdAttr+'="'+id+'"]').css("opacity", "1");
+        }
+    };
+
     /**
      * Created by Jorch
      */
@@ -931,6 +940,7 @@ var ContentList = (function(){
         hover: _hover,
         unhover: _unhover,
         selectListItem: _selectListItem,
+        selectMultipleListItem: _selectMultipleListItem,
         selectManyListItem: _selectManyListItem,
         deselectAllListItems: _deselectAllListItems,
         highlightListItems: _highlightListItems,
