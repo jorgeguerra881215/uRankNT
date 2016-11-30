@@ -9,6 +9,8 @@ var Urank = (function(){
     var queryTermColorRange = colorbrewer.Set2[8];
     queryTermColorRange.splice(queryTermColorRange.indexOf("#ffff33"), 1, "#ffd700");
 
+    var connectionList = [];
+
     //   defaults
     var defaultInitOptions = {
         root: 'body',
@@ -334,6 +336,16 @@ var enterLog = function(value){
         return cluster1.concat(cluster2).concat(cluster3);
     }
 
+    var climbUpConnection = function(data, connection){
+        connectionList.push(connection);
+        var aux = [];
+        data.forEach(function(item){
+            item.id != connection.id ? aux.push(item) : null;
+        });
+
+        return connectionList.concat(aux);
+    }
+
     var enterText = function(value){
         var scriptURL = '../server/log.php',
             urankState = value;
@@ -555,7 +567,8 @@ var enterLog = function(value){
             if(_this.selectedId !== STR_UNDEFINED) {    // select
 
                 var connection = _this.rankingModel.getDocumentById(documentId);
-                var new_list = getDataOrdered(_this.data,connection);
+                //var new_list = getDataOrdered(_this.data,connection);
+                var new_list = climbUpConnection(_this.data,connection);
                 contentList.orderedList(new_list);
 
                 contentList.selectListItem(documentId);

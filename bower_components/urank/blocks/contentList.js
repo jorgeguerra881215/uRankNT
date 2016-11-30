@@ -610,18 +610,18 @@ var ContentList = (function(){
             var index = 0;
             var value = 0;
             if(typeof index_flag === 'undefined'){
-                index = i+1 < 10 ? (i+1)+'-&nbsp;&nbsp;' : (i+1)+'-';
+                index = i+1 < 10 ? (i+1)+'-&nbsp;&nbsp;&nbsp;&nbsp;' : (i+1)+'-';
                 value = i+1;
                 d.viewIndex = i+1;
             }
             else{
                 var new_index = d.viewIndex;
-                index = new_index < 10 ? new_index+'-&nbsp;&nbsp;' : new_index+'-';//$('label#label-'+d.id).attr('value');
+                index = new_index < 10 ? new_index+'-&nbsp;&nbsp;&nbsp;&nbsp;' : new_index+'-';//$('label#label-'+d.id).attr('value');
                 value = new_index;
             }
             //var index = i+1 < 10 ? (i+1)+'-&nbsp;&nbsp;C'+ d.cluster : (i+1)+'-'+ d.cluster;
-            var list_element_container = $('<div><div style="float: left; width: 25%">'+ligth_circle+'<label value="'+value+'" id="label-'+ d.id+'">'+index+'</label></div></div>', { id: 'urank-list-li-title-' + i, class: liTitleClass +' '+ liTitleClassDefault, html: html, title: d.title + '\n' + d.description }).appendTo($titleDiv);
-            var visual_representation = $('<div style="float: left; width: 75%"></div>').appendTo(list_element_container);
+            var list_element_container = $('<div><div style="float: left; width: 70px">'+ligth_circle+'<label value="'+value+'" id="label-'+ d.id+'">'+index+'</label></div></div>', { id: 'urank-list-li-title-' + i, class: liTitleClass +' '+ liTitleClassDefault, html: html, title: d.title + '\n' + d.description }).appendTo($titleDiv);
+            var visual_representation = $('<div style="float: left; width: 200px"></div>').appendTo(list_element_container);
             html.forEach(function(label){
                 label.appendTo(visual_representation);
             });
