@@ -573,7 +573,8 @@ var enterLog = function(value){
                 var new_list = climbUpConnection(_this.data,connection);
                 contentList.orderedList(new_list);
                 contentList.selectMultipleListItem(connection_id);
-                
+                $('body > div.main-panel > div.central-panel > div.vis-panel').scrollTop(0,0);
+
                 //contentList.selectListItem(documentId);
                 visCanvas.selectItem(documentId);
                 docViewer.showDocument(connection, _this.selectedKeywords.map(function(k){return k.stem}), _this.queryTermColorScale);
