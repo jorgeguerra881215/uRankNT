@@ -532,7 +532,7 @@ var DocViewer = (function(){
                     '<div>' +
                         '<div>' +
                             /*'<input type="text" placeholder="Add new label..." id="label-text" style="display: none"><label>Tell us why you select this label:</label><textarea id="urank-docviewer-labeling-text" rows="5"></textarea>' +*/
-                            '<button class="btn-show-connection-sequence left" sequence="'+sequence+'" style="margin 2px">Sequence</button>'+
+                            '<button class="btn-show-connection-sequence" sequence="'+sequence+'" style="margin:2px; float: right;">Show Sequence</button>'+
                             '<button id="urank-label-button-botnet-'+document.id+'" class="btn-botnet-label-connection rigth '+opacity_botnet_class+'" style="margin: 2px" idC="'+document.id+'">Botnet</button>' +
                             '<button id="urank-label-button-normal-'+document.id+'" class="btn-normal-label-connection rigth '+opacity_normal_class+'" style="margin: 2px" idC="'+document.id+'">Normal</button>' +
                             '<div style="clear: both"></div>'+
