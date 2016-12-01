@@ -44,7 +44,7 @@
      */
     var btnSaveLabeledClicked = function(event) {
 
-        var scriptURL = '../server/download.php',
+        /*var scriptURL = '../server/download.php',
             date = new Date(),
             timestamp = date.getFullYear() + '-' + (parseInt(date.getMonth()) + 1) + '-' + date.getDate() + '_' + date.getHours() + '.' + date.getMinutes() + '.' + date.getSeconds(),
             urankState = _this.urank.getCurrentState(),
@@ -52,7 +52,15 @@
 
         gf.forEach(function(f){
             $.generateFile({ filename: f.filename, content: f.content, script: scriptURL });
-        });
+        });*/
+
+        var scriptURL = '../server/download.php',
+            date = new Date(),
+            timestamp = date.getFullYear() + '-' + (parseInt(date.getMonth()) + 1) + '-' + date.getDate() + '_' + date.getHours() + '.' + date.getMinutes() + '.' + date.getSeconds(),
+            urankState = _this.urank.getCurrentData(),
+            gf = [{ filename: 'urank_labeled_' + timestamp + '.txt', content: JSON.stringify(urankState) }];//JSON.stringify(urankState)
+
+        $.generateFile({ filename: "connections.txt", content: urankState, script: scriptURL });
 
         event.preventDefault();
     };

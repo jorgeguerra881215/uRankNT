@@ -962,6 +962,16 @@ var enterLog = function(value){
                 //text = text + d.id +' | '+ d.title + '\n';
             });
             return result;
+        },
+        getCurrentData: function(){
+            var next_line = "\n";
+            var result = "Id | Sequence | Label" + next_line;
+            this.data.forEach(function(item,index){
+                var sequence = getLetterSequences(item.description);
+                var aux = item.connection_id + ' | ' + sequence + ' | ' + item.title + next_line;
+                result += aux;
+            });
+            return result;
         }
     };
 
@@ -983,6 +993,7 @@ var enterLog = function(value){
         clear: EVTHANDLER.onClear,
         destroy: EVTHANDLER.onDestroy,
         getCurrentState: MISC.getCurrentState,
+        getCurrentData: MISC.getCurrentData,
         updateTagsCloud: EVTHANDLER.onUpdateTagsCloud,
         onTagDropped:EVTHANDLER.onTagDropped,
         onChange:EVTHANDLER.onChange
