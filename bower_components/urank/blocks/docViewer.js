@@ -99,12 +99,18 @@ var DocViewer = (function(){
      * Labeling connections like Botnet
      */
     var saveBotnetLabel = function saveLabelBton(event,document_id){
+        console.log('Etiquetando como botnet la connection '+document_id);
         var documentId = document_id != null ? document_id : _document.id;
         $('#label-text').val("Botnet");
         //changing a color
         $("[urank-span-id='"+documentId+"']").removeClass('yellow-circle');
         $("[urank-span-id='"+documentId+"']").removeClass('green-circle');
         $("[urank-span-id='"+documentId+"']").addClass('red-circle');
+
+        $("#index-label-"+document_id).removeClass('unlabelled');
+        $("#index-label-"+document_id).removeClass('normal');
+        $("#index-label-"+document_id).addClass('botnet');
+
         keepElementFocus();
         saveLabel(event);
 
@@ -115,6 +121,7 @@ var DocViewer = (function(){
      * Labeling connections like Normal
      */
     var saveNormalLabel = function saveLabelBton(event,document_id){
+        console.log('Etiquetando como normal la connection '+document_id);
         var documentId = document_id != null ? document_id : _document.id;
         $('#label-text').val("Normal");
         //changing a color
@@ -122,6 +129,11 @@ var DocViewer = (function(){
         $("[urank-span-id='"+documentId+"']").removeClass('yellow-circle');
         $("[urank-span-id='"+documentId+"']").removeClass('red-circle');
         $("[urank-span-id='"+documentId+"']").addClass('green-circle');
+
+        $("#index-label-"+document_id).removeClass('unlabelled');
+        $("#index-label-"+document_id).removeClass('botnet');
+        $("#index-label-"+document_id).addClass('normal');
+
         keepElementFocus();
         saveLabel(event);
     }
@@ -454,6 +466,17 @@ var DocViewer = (function(){
                 console.log('filtrando');
                 urank.findNotLabeled(this.value,this.filter);
             });
+            $('.btn-botnet-label-connection').on("click",function(){
+                var btn = $(this);//$('#'+id);
+                var id_connection = btn.attr('idC');
+                saveBotnetLabel(this,id_connection);
+            });
+            $('.btn-normal-label-connection').on("click",function(){
+                var btn = $(this);//$('#'+id);
+                var id_connection = btn.attr('idC');
+                saveNormalLabel(this,id_connection);
+            });
+
             _showBarChart('bar-graph-'+document.id,letter_data);
             _showPieChart('pie-graph-'+document.id,periodic_data);
 
@@ -477,7 +500,7 @@ var DocViewer = (function(){
                     '<div>' +
                         '<div class="left" style="margin-right: 25px; margin-top: 6px">' +
                             '<div class="doc-label-container">' +
-                                '<label class="urank-docviewer-attributes urank-docviewer-details-label '+title.toLowerCase()+'">'+index+' | '+title+'</label>' +
+                                '<label id="index-label-'+document.id+'" class="urank-docviewer-attributes urank-docviewer-details-label '+title.toLowerCase()+'">'+index+' | '+title+'</label>' +
                             '</div>' +
                         '</div>' +
                         '<div class="doc-attributes-sontainer left">' +
@@ -510,8 +533,8 @@ var DocViewer = (function(){
                         '<div>' +
                             /*'<input type="text" placeholder="Add new label..." id="label-text" style="display: none"><label>Tell us why you select this label:</label><textarea id="urank-docviewer-labeling-text" rows="5"></textarea>' +*/
                             '<button class="btn-show-connection-sequence left" sequence="'+sequence+'" style="margin 2px">Sequence</button>'+
-                            '<button id="urank-label-button-botnet-'+document.id+'" class="rigth '+opacity_botnet_class+'" disabled="" style="margin: 2px">Botnet</button>' +
-                            '<button id="urank-label-button-normal-'+document.id+'" class="rigth '+opacity_normal_class+'" style="margin: 2px">Normal</button>' +
+                            '<button id="urank-label-button-botnet-'+document.id+'" class="btn-botnet-label-connection rigth '+opacity_botnet_class+'" style="margin: 2px" idC="'+document.id+'">Botnet</button>' +
+                            '<button id="urank-label-button-normal-'+document.id+'" class="btn-normal-label-connection rigth '+opacity_normal_class+'" style="margin: 2px" idC="'+document.id+'">Normal</button>' +
                             '<div style="clear: both"></div>'+
                         '</div>' +
                         /*'<div class="urank-docviewer-divisor"></div>' +*/
