@@ -571,7 +571,8 @@ var enterLog = function(value){
                 var connection = _this.rankingModel.getDocumentById(documentId);
                 //var new_list = getDataOrdered(_this.data,connection);
                 var new_list = climbUpConnection(_this.data,connection);
-                contentList.orderedList(new_list);
+                var count_of_selected_items = connection_id.length;
+                contentList.orderedList(new_list, count_of_selected_items);
                 contentList.selectMultipleListItem(connection_id);
                 $('body > div.main-panel > div.central-panel > div.vis-panel').scrollTop(0,0);
 
@@ -781,11 +782,14 @@ var enterLog = function(value){
 
         onReset: function(event) {
             if(event) event.stopPropagation();
-            contentList.reset();
-            tagCloud.reset();
-            tagBox.clear();
-            visCanvas.reset();
-            docViewer.clear();
+            //contentList.reset();
+            connectionList = [];
+            connection_id = [];
+            contentList.orderedList(_this.data,0);
+            //tagCloud.reset();
+            //tagBox.clear();
+            //visCanvas.reset();
+            //docViewer.clear();
             _this.rankingModel.reset();
             _this.selectedId = STR_UNDEFINED;
             _this.selectedKeywords = [];

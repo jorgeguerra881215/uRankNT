@@ -908,7 +908,7 @@ var ContentList = (function(){
         });
     }*/
 
-    var _orderedList = function(data){
+    var _orderedList = function(data,count_of_selected_items){
         var ul = $('ul#connection-list');
          var li_s = $('ul#connection-list li');
          var dict_li = {}
@@ -921,6 +921,10 @@ var ContentList = (function(){
         data.forEach(function(item,i){
             var connection_index = item.viewIndex;
             var new_li = dict_li[connection_index];
+            new_li.style['margin-bottom'] = '0px';
+            if(i + 1 == count_of_selected_items){
+                new_li.style['margin-bottom'] = '10px';
+            }
             ul.append(new_li);
         });
         $('ul#connection-list li').each(function(item){
