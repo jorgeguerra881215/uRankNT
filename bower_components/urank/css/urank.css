@@ -517,6 +517,18 @@ label.characteristic{
 .selected{
     border: 5px solid gray;
 }
+
+.connection-characteristic{
+    /*color: transparent;*/
+    padding: 5px;
+    border-right:1px solid #ffffff
+}
+.legend-color-transparent{
+    color: transparent;
+}
+.legend-color{
+    color: gray;
+}
 /*****************************************************************************************************************
 
 Canvas section (right-center) - displays ranking vis

@@ -356,7 +356,7 @@ var ContentList = (function(){
      * TODO Rebuild this method to use characteristic vector
      */
     var createVisualRepresentation = function(connection){
-        //Periodicity feature
+        /*//Periodicity feature
         var sNP = $('<label id="representation-snp" style="color: transparent;padding: 5px;border-right:1px solid #ffffff ">M</label>'), rep_sNP = /[R-Z]/, count_sNP = 0;
         var wNP = $('<label id="representation-wnp" style="color: transparent;padding: 5px;border-right:1px solid #ffffff ">M</label>'), rep_wNP = /[r-z]/, count_wNP = 0;
         var wP = $('<label id="representation-wp" style="color: transparent;padding: 5px;border-right:1px solid #ffffff ">M</label>'), rep_wP = /[A-I]/, count_wP = 0;
@@ -369,6 +369,20 @@ var ContentList = (function(){
         var sS = $('<label id="representation-sS" style="color: transparent;padding: 5px;border-right:1px solid #ffffff; margin-left:5px;">M</label>'), rep_sS = {a:1,A:1,b:1,B:1,c:1,C:1,r:1,R:1,s:1,S:1,t:1,T:1}, count_sS = 0;
         var sM = $('<label id="representation-sM" style="color: transparent;padding: 5px;border-right:1px solid #ffffff ">M</label>'), rep_sM = {d:1,D:1,e:1,E:1,f:1,F:1,u:1,U:1,v:1,V:1,w:1,W:1}, count_sM = 0;
         var sL = $('<label id="representation-sL" style="color: transparent;padding: 5px;border-right:1px solid #ffffff ">M</label>'), rep_sL = {g:1,G:1,h:1,H:1,i:1,I:1,x:1,X:1,y:1,Y:1,z:1,Z:1}, count_sL = 0;
+*/
+        //Periodicity feature
+        var sNP = $('<label id="representation-snp" class="connection-characteristic">snp</label>'), rep_sNP = /[R-Z]/, count_sNP = 0;
+        var wNP = $('<label id="representation-wnp" class="connection-characteristic">wnp</label>'), rep_wNP = /[r-z]/, count_wNP = 0;
+        var wP = $('<label id="representation-wp" class="connection-characteristic">wp</label>'), rep_wP = /[A-I]/, count_wP = 0;
+        var sP = $('<label id="representation-sp" class="connection-characteristic">sp</label>'), rep_sP = /[a-i]/, count_sP = 0;
+        //Duration feature
+        var dS = $('<label id="representation-dS" class="connection-characteristic" style="margin-left:5px; ">ds</label>'), rep_dS = {a:1,A:1,r:1,R:1,d:1,D:1,u:1,U:1,g:1,G:1,x:1,X:1}, count_dS = 0;
+        var dM = $('<label id="representation-dM" class="connection-characteristic">dm</label>'), rep_dM = {b:1,B:1,s:1,S:1,e:1,E:1,v:1,V:1,h:1,H:1,y:1,Y:1}, count_dM = 0;
+        var dL = $('<label id="representation-dL" class="connection-characteristic">dl</label>'), rep_dL = {c:1,C:1,t:1,T:1,f:1,F:1,w:1,W:1,i:1,I:1,z:1,Z:1}, count_dL = 0;
+        //Size feature
+        var sS = $('<label id="representation-sS" class="connection-characteristic" style="margin-left:5px;">ss</label>'), rep_sS = {a:1,A:1,b:1,B:1,c:1,C:1,r:1,R:1,s:1,S:1,t:1,T:1}, count_sS = 0;
+        var sM = $('<label id="representation-sM" class="connection-characteristic">sm</label>'), rep_sM = {d:1,D:1,e:1,E:1,f:1,F:1,u:1,U:1,v:1,V:1,w:1,W:1}, count_sM = 0;
+        var sL = $('<label id="representation-sL" class="connection-characteristic">sl</label>'), rep_sL = {g:1,G:1,h:1,H:1,i:1,I:1,x:1,X:1,y:1,Y:1,z:1,Z:1}, count_sL = 0;
 
         var description = connection.description;
         var count  = description.length;
@@ -621,7 +635,7 @@ var ContentList = (function(){
             }
             //var index = i+1 < 10 ? (i+1)+'-&nbsp;&nbsp;C'+ d.cluster : (i+1)+'-'+ d.cluster;
             var list_element_container = $('<div><div style="float: left; width: 70px">'+ligth_circle+'<label value="'+value+'" id="label-'+ d.id+'">'+index+'</label></div></div>', { id: 'urank-list-li-title-' + i, class: liTitleClass +' '+ liTitleClassDefault, html: html, title: d.title + '\n' + d.description }).appendTo($titleDiv);
-            var visual_representation = $('<div style="float: left; width: 200px"></div>').appendTo(list_element_container);
+            var visual_representation = $('<div style="float: left; width: 200px" class="heat-map-carrier"></div>').appendTo(list_element_container);
             html.forEach(function(label){
                 label.appendTo(visual_representation);
             });
@@ -643,6 +657,10 @@ var ContentList = (function(){
 
             $("<span style='margin-left: 8px'>").appendTo($buttonsDiv).addClass(watchiconClass+' '+watchiconDefaultClass+' '+watchiconOffClass);
             $("<span style='margin-left: -8px'>").appendTo($buttonsDiv).addClass(faviconClass+' '+faviconDefaultClass+' '+faviconOffClass);
+
+            $('.heat-map-carrier').css('color','transparent');
+            $('#connection-list > li:nth-child(1) > div.urank-list-li-title-container > div > div:nth-child(2)').css('color','black');
+
             // Subtle animation
             $li.animate({'top': 5}, {
                 'complete': function(){
@@ -909,7 +927,8 @@ var ContentList = (function(){
     }*/
 
     var _orderedList = function(data,count_of_selected_items){
-        var ul = $('ul#connection-list');
+        $('.heat-map-carrier').css('color','transparent');
+         var ul = $('ul#connection-list');
          var li_s = $('ul#connection-list li');
          var dict_li = {}
          for(var i =0; i < li_s.length; i++){
@@ -922,6 +941,7 @@ var ContentList = (function(){
             var connection_index = item.viewIndex;
             var new_li = dict_li[connection_index];
             new_li.style['margin-bottom'] = '0px';
+            new_li.style['color'] = 'black';
             if(i + 1 == count_of_selected_items){
                 new_li.style['margin-bottom'] = '10px';
             }
@@ -933,6 +953,7 @@ var ContentList = (function(){
             bindEventHandlers(li, id);
         })
         $('ul#connection-list li').removeClass('hovered');
+        $('#connection-list > li:nth-child(1) > div.urank-list-li-title-container > div > div:nth-child(2)').css('color','black');
     }
 
 
